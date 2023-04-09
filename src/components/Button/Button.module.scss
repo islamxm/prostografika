@@ -1,0 +1,71 @@
+.wrapper.button_def {
+    padding: 12px 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all .2s ease;
+    font-weight: 700;
+    
+    .icon {
+        display: none;
+        line-height: 100%;
+    }
+
+    .before {
+        margin-right: 10px;
+        flex: 0 0 auto;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .after {
+        flex: 0 0 auto;
+        margin-left: 10px;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.wrapper.button_icon {
+    padding: 5px;
+
+    .text, .before, .after {
+        display: none;
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.wrapper.fill {
+    width: 100%;
+}
+
+.wrapper.var_violet {
+    background-color: var(--violet);
+}
+
+.wrapper.var_aqua {
+    background-color: var(--aqua);
+}
+
+.wrapper.var_light_violet {
+    background-color: var(--light_violet);
+}
+

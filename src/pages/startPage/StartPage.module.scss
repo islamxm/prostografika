@@ -1,3 +1,107 @@
 .wrapper {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 0 auto;
+
+    .top {
+        margin-bottom: 20px;
+        .title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 22px;
+        }
+    }
+
+    .main {
+        max-width: 284px;
+        width: 100%;
+        margin: 0 auto;
+        .cards {
+            position: relative;
+            height: 350px;
+            width: 100%;
+            margin: 0 auto;
+            margin-bottom: 25px;
+
+            .card {
+                width: 184px;
+                height: 213px;
+                position: absolute;
+                overflow: hidden;
+                .card_in {
+                    width: 100%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    height: 100%;
+                  
+                }
+
+                &:nth-child(1) {
+                    top: 0;
+                    left: 0;
+                    .card_in {
+                        background-image: url('../../../public/assets/img/start-page-card-1.png');
+                    }
+                }
+                &:nth-child(2) {
+                    top: 70px;
+                    left: 52px;
+
+                    .card_in {
+                        background-image: url('../../../public/assets/img/start-page-card-2.png');
+                    }
+                }
+                &:nth-child(3) {
+                    top: 137px;
+                    left: 100px;
+                    .card_in {
+                        background-image: url('../../../public/assets/img/start-page-card-3.png');
+                    }
+                }
+            }
+        }
+
+        .title {
+            font-weight: 300;
+            font-size: 29.8544px;
+            line-height: 39px;
+            text-align: center;
+            margin-bottom: 15px;
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .ex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 284px;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 30px;
+
+        .label {
+            font-weight: 700;
+            font-size: 12.0995px;
+            line-height: 14px;
+        }
+
+        .link {
+            width: 50px;
+            height: 35px;
+            background-image: url('../../../public/assets/youtube-icon.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            flex: 0 0 auto;
+            display: block;
+        }
+    }
 }
