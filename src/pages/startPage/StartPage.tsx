@@ -9,7 +9,7 @@ import {motion, Variants} from 'framer-motion';
 
 const itemAnim:Variants  = {
     hidden: {
-        y: 1, 
+        y: '100%', 
         //rotate: 20
     },
     visible: {
