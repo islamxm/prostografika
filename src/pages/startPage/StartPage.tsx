@@ -36,7 +36,7 @@ const StartPage:FC = () => {
             <div className={styles.main}>
                 <motion.div 
                     variants={{
-                        hidden: {opacity: 0},
+                        hidden: {opacity: 1},
                         visible: {
                             opacity: 1,
                             transition: {
