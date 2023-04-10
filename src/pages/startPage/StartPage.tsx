@@ -9,11 +9,11 @@ import {motion, Variants} from 'framer-motion';
 
 const itemAnim:Variants  = {
     hidden: {
-        y: '105%', 
+        y: 1, 
         //rotate: 20
     },
     visible: {
-        y: '0',
+        y: 0,
         // rotate: 0,
         transition: {
             //cubic-bezier(.26,.12,.25,.99)
