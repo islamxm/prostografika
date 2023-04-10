@@ -45,7 +45,7 @@ const StartPage:FC = () => {
                             }
                         },
                     }}
-                    initial="hidden"
+                    initial="visible"
                     animate="visible"
                     className={styles.cards}>
                     <div className={styles.card}>
