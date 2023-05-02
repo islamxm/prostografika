@@ -1,0 +1,2 @@
+type pebBgThemesType = "Surprise me" | "Studio" | "Outdoors" | "Silk" | "Cafe" | "Tabletop" | "Kitchen" | "Flowers" | "Nature" | "Beach" | "Bathroom" | "Furniture" | "Paint" | "Fruits" | "Water" | "Pebbles" | "Snow";
+export default pebBgThemesType;
