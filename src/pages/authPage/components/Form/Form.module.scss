@@ -1,0 +1,37 @@
+.wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(50px);
+    /* Note: backdrop-filter has minimal browser support */
+    width: 100%;
+    border-radius: 20px;
+    padding: 48px 15px;
+
+    .title {
+        margin-bottom: 50px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .form {
+
+        .fields {
+            margin-bottom: 50px;
+        }
+
+        .action {
+            margin-bottom: 25px;
+        }
+
+        .ex {
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 18px;
+            text-align: center;
+            a {
+                color: var(--aqua);
+            }
+        }
+    }
+}

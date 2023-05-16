@@ -7,7 +7,8 @@ export interface buttonType extends HTMLProps<HTMLButtonElement> {
     beforeIcon?: ReactNode,
     afterIcon?: ReactNode,
     icon?: ReactNode,
-    fill?: boolean
+    fill?: boolean,
+    bottomLabel?: string
 }
 
 export type buttonVariants = 'violet' | 'aqua' | 'light-violet'

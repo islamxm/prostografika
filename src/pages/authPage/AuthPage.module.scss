@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+
+    .main {
+        width: 100%;
+        padding-bottom: 85px;
+    }
+
+    .ex {
+        position: fixed;
+        bottom: 30px;
+        left: calc(50% - ((100vw - 30px) / 2));
+        width: calc(100vw - 30px);
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        height: 55px;
+    }
+
+}

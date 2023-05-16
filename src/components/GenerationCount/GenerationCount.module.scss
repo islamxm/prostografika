@@ -1,0 +1,44 @@
+.wrapper {
+    
+
+
+    .value {
+        
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        padding-left: 33px;
+        background-color: var(--violet);
+        font-size: 22px;
+        line-height: 27px;
+        letter-spacing: -0.04em;
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 5px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 12px);
+            left: 5px;
+            width: 24px;
+            height: 24px;
+            background-image: url('../../../public/assets/img/icons/light.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        span {
+            opacity: .5;
+        }
+    }
+
+    .label {
+        text-align: center;
+        font-size: 11px;
+        line-height: 13px;
+        color: #fff;
+    }
+}

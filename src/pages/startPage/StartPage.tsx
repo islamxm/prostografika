@@ -67,7 +67,8 @@ const StartPage:FC = () => {
                 <h1 className={styles.title}>Создай карточку <br/> товара за <span>5 минут</span></h1>
                 <Button 
                     fill
-                    text="Создать"/>
+                    style={{paddingLeft: 18, paddingRight: 18}}
+                    text="Попробовать бесплатно"/>
             </div>
             <div className={styles.ex}>
                 <div className={styles.label}>Жми и смотри <br/> обзор сервиса</div>
