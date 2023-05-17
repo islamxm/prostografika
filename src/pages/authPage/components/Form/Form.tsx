@@ -4,7 +4,11 @@ import { Row, Col } from 'antd';
 import Button from '../../../../components/Button/Button';
 
 
-const Form = () => {
+const Form = ({
+    onSubmit
+}: {
+    onSubmit: (...args: any) => any
+}) => {
 
     
 
@@ -31,6 +35,7 @@ const Form = () => {
                 </div>
                 <div className={styles.action}>
                     <Button
+                        onClick={onSubmit}
                         type='button'
                         text='Вход'
                         fill

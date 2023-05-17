@@ -1,0 +1,37 @@
+.wrapper {
+    padding: 5px 0;
+   
+    
+
+    .main {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .title {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.04em;
+            padding-right: 15px;
+        }
+    
+        .balance {
+            
+        }
+    }
+
+    .description {
+        width: 100%;
+        margin-top: 12px;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        color: #fff;
+        max-width: 290px;
+        
+    }
+}

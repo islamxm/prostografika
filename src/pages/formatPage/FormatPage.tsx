@@ -1,11 +1,16 @@
 import styles from './FormatPage.module.scss';
 import Button from '../../components/Button/Button';
 import { Row, Col } from 'antd';
+import {motion} from 'framer-motion';
+import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
+
 
 const FormatPage = () => {
 
     return (
-        <div className={styles.wrapper}>
+        <motion.div 
+            {...pageEnterExitAnim}
+            className={styles.wrapper}>
             <div className={styles.body}>
                 <Row gutter={[25,25]}>
                     <Col span={24}>
@@ -28,7 +33,7 @@ const FormatPage = () => {
                     </Col>
                 </Row>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

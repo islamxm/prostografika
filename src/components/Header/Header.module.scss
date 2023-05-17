@@ -1,0 +1,67 @@
+.wrapper {
+    height: 45px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    padding: 0 15px;
+    
+    .back {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+
+        .icon {
+            font-size: 12px;
+            line-height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            margin-right: 7px;
+        }
+        .label {
+            font-size: 14px;
+            line-height: 14px;
+            
+        }
+    }
+
+    .burger {
+        flex: 0 0 auto;
+        width: 30px;
+        height: 30px;
+
+        .in {
+            position: relative;
+        }
+
+        span {
+            position: absolute;
+            left: 0;
+            height: 1px;
+            border-radius: 100px;
+            background-color: #fff;
+            display: block;
+
+            &:nth-child(1) {
+                top: 0;
+            }
+
+            &:nth-child(2) {
+                top: calc(50% - 0.5px);
+            }
+
+            &:nth-child(3) {
+                bottom: 0;
+            }
+
+        }
+    }
+}
