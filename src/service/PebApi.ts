@@ -52,7 +52,6 @@ class PebApi {
                     ...headers,
                     "X-Pebblely-Access-Token": `${token}`
                 },
-                mode:'cors',
                 body: JSON.stringify(body)
             }) 
             return await res?.json()
