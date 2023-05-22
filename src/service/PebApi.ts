@@ -48,10 +48,11 @@ class PebApi {
         try {
             let res = await fetch(endpoints.pebRemoveBg, {
                 method: 'POST',
-                headers: {
+                headers: {                    
                     ...headers,
                     "X-Pebblely-Access-Token": `${token}`
                 },
+                mode:'cors',
                 body: JSON.stringify(body)
             }) 
             return await res?.json()

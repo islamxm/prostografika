@@ -37,19 +37,37 @@
     &:active {
         transform: scale(0.95);
     }
+
+    &:disabled {
+        pointer-events: none;
+        touch-action: none;
+        opacity: .5;
+    }
 }
 
 .wrapper.button_icon {
-    padding: 5px;
+    padding: 12px;
+    border-radius: 16px;
+    transition: all .2s ease;
 
     .text, .before, .after {
         display: none;
     }
 
     .icon {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:disabled {
+        pointer-events: none;
+        touch-action: none;
+        opacity: .5;
     }
 }
 

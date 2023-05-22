@@ -1,0 +1,50 @@
+.wrapper {
+    // background: rgba(#C4C4C4, .2);
+    border-radius: 15px;
+    margin: 20px auto;
+    position: relative;
+    
+
+    .main {
+        width: 355px;
+        padding-bottom: 100%;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        border-radius: 15px;
+        overflow: hidden;
+
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(#C4C4C4, .2);
+            border-radius: 15px;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                display: flex;
+            }
+        }
+    }
+
+    .action {
+        padding: 20px 0;
+
+        .action_main {
+
+            .item {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -16,6 +16,7 @@ a {
 
 button,input,textarea {
     border: none;
+    font: inherit;
     background-color: unset;
 }
 
@@ -39,5 +40,8 @@ body {
     background-position: center;
     background-size: cover;
 }
+
+
+
 
 

@@ -10,7 +10,7 @@ import store from "../store/store";
 import CheckAuth from "../hoc/CheckAuth";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-
+import UploadEditPage from "../pages/uploadEditPage/UploadEditPage";
 
 const App:FC = () => {
     const location = useLocation()
@@ -24,7 +24,8 @@ const App:FC = () => {
                         <Route path="/" element={<StartPage/>}/>
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/format" element={<FormatPage/>}/>
-                        <Route path="/pricing" element={<PricingPage/>}></Route>
+                        <Route path="/pricing" element={<PricingPage/>}/>
+                        <Route path="/upload_edit" element={<UploadEditPage/>}/>
                     </Routes>
                 </AnimatePresence>
               

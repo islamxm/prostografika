@@ -1,0 +1,31 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    transition: all .3s ease;
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &:disabled {
+        opacity: .5;
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    .icon {
+        font-size: 32px;
+        line-height: 32px;
+    }
+
+    .label {
+        // margin-top: 10px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+}

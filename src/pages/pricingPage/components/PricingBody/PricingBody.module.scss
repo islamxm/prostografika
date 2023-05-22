@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 50px 0 0 0;
+
+    .slider {
+        overflow: visible;
+        padding: 0 20px;
+        padding-bottom: 50px;
+
+        .slide {
+            transition: all .3s ease;
+        }
+    }
+}

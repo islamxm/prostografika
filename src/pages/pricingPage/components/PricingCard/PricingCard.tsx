@@ -1,36 +1,39 @@
 import styles from './PricingCard.module.scss';
 import {FC} from 'react';
 import { IPricingCard } from './types';
+import {BsCheckLg} from 'react-icons/bs';
 
+const PricingCard:FC<IPricingCard> = (props) => {
+    const {price,
+        descrList,
+        onSelectPlan,
+        id} = props
 
-const PricingCard:FC<IPricingCard> = ({
-
-}) => {
 
     return (
         <div className={styles.wrapper}>
-            <input type="radio"/>
-            <label className={styles.in} htmlFor="">
+            <input {...props}  onChange={(e) => {
+                onSelectPlan && onSelectPlan(id)
+            }} type="radio"/>
+            <label className={styles.in} htmlFor={id}>
                 <div className={styles.head}>
                     <div className={styles.title}>1 скачивания</div>
-                    <div className={styles.price}>199₽</div>
+                    <div className={styles.price}>{price}₽</div>
                         
-                    <div className={styles.icon}></div>
+                    <div className={styles.icon}>
+                        <div className={styles.el}><BsCheckLg/></div>
+                    </div>
                 </div>
                 <div className={styles.body}>
                     <ul className={styles.list}>
-                        <li className={styles.item}>
-                            У вас закончились бесплатные загрузки. Заберите свой промокод в нашем телеграмм канале. 
-                        </li>
-                        <li className={styles.item}>
-                            У вас закончились бесплатные загрузки. 
-                        </li>
-                        <li className={styles.item}>
-                            У вас закончились бесплатные загрузки. 
-                        </li>
-                        <li className={styles.item}>
-                            У вас закончились бесплатные загрузки. 
-                        </li>
+                        {
+                            descrList?.map((i, index) => (
+                                <li className={styles.item}>
+                                    <span>{index + 1}</span>
+                                    {i.label}
+                                </li>
+                            ))  
+                        }
                     </ul>
                     
                 </div>
