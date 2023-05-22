@@ -23,6 +23,9 @@ const EditField = () => {
         apiPeb.removeBg({image: uploadedFile}, '06e6d852-ada5-4ad2-b77c-3521fcf18e56').then(res => {
             console.log(res)
         })
+        // apiPeb.getCredits('06e6d852-ada5-4ad2-b77c-3521fcf18e56').then(res => {
+        //     console.log(res)
+        // })
     }
     
     return (

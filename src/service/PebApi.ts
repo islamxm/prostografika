@@ -47,6 +47,7 @@ class PebApi {
     }, token: string) => {
         try {
             let res = await fetch(endpoints.pebRemoveBg, {
+                // credentials: 'include',
                 method: 'POST',
                 headers: {                    
                     ...headers,
