@@ -7,6 +7,7 @@ import { useScroll } from '@react-hooks-library/core'
 import Sidebar from '../Sidebar/Sidebar';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { main_menuClose } from '../../store/slices/mainSlice/mainSlice';
+
 const Wrapper:FC<{children?: ReactNode}> = ({
     children
 }) => {
@@ -17,6 +18,7 @@ const Wrapper:FC<{children?: ReactNode}> = ({
     const boxRef = useRef<HTMLDivElement>(null)
     const location = useLocation()
     const [headerActive, setHeaderActive] = useState<boolean>()
+    const [vh, setVh] = useState<number>(1)
 
     useScroll(boxRef, ({ scrollY }) => {
         scrollY > 0 ? setHeaderActive(true) : setHeaderActive(false) 
@@ -27,11 +29,16 @@ const Wrapper:FC<{children?: ReactNode}> = ({
         dispatch(main_menuClose())
     }, [location])
     
+
+    useEffect(() => {
+        setVh(window.innerHeight / 100)
+    }, [])
     
+
 
     return (
        
-        <div ref={boxRef} className={styles.wrapper}>
+        <div style={{height: `calc(${vh}vh * 100)`}} ref={boxRef} className={styles.wrapper}>
             {(token && pathname !== '/') && <Header isActive={headerActive && !isMenuOpen}/>}
             <Sidebar/>
             {children}
