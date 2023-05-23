@@ -7,6 +7,7 @@ import { useScroll } from '@react-hooks-library/core'
 import Sidebar from '../Sidebar/Sidebar';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { main_menuClose } from '../../store/slices/mainSlice/mainSlice';
+import Div100vh from 'react-div-100vh'
 
 const Wrapper:FC<{children?: ReactNode}> = ({
     children
@@ -38,11 +39,11 @@ const Wrapper:FC<{children?: ReactNode}> = ({
 
     return (
        
-        <div style={{height: `calc(${vh}vh * 100)`}} ref={boxRef} className={styles.wrapper}>
+        <Div100vh ref={boxRef} className={styles.wrapper}>
             {(token && pathname !== '/') && <Header isActive={headerActive && !isMenuOpen}/>}
             <Sidebar/>
             {children}
-        </div>
+        </Div100vh>
     )
 }
 
