@@ -19,7 +19,7 @@ const Wrapper:FC<{children?: ReactNode}> = ({
     const boxRef = useRef<HTMLDivElement>(null)
     const location = useLocation()
     const [headerActive, setHeaderActive] = useState<boolean>()
-    const [vh, setVh] = useState<number>(1)
+
 
     useScroll(boxRef, ({ scrollY }) => {
         scrollY > 0 ? setHeaderActive(true) : setHeaderActive(false) 
@@ -31,9 +31,7 @@ const Wrapper:FC<{children?: ReactNode}> = ({
     }, [location])
     
 
-    useEffect(() => {
-        setVh(window.innerHeight / 100)
-    }, [])
+   
     
 
 
