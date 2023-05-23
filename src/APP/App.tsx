@@ -7,11 +7,10 @@ import FormatPage from "../pages/formatPage/FormatPage";
 import PricingPage from "../pages/pricingPage/PricingPage";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import CheckAuth from "../hoc/CheckAuth";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import UploadEditPage from "../pages/uploadEditPage/UploadEditPage";
-
+import CardsPage from "../pages/cardsPage/CardsPage";
 const App:FC = () => {
     const location = useLocation()
 
@@ -26,6 +25,7 @@ const App:FC = () => {
                         <Route path="/format" element={<FormatPage/>}/>
                         <Route path="/pricing" element={<PricingPage/>}/>
                         <Route path="/upload_edit" element={<UploadEditPage/>}/>
+                        <Route path="/my_cards" element={<CardsPage/>}/>
                     </Routes>
                 </AnimatePresence>
               

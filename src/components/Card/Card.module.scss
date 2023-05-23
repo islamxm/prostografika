@@ -1,0 +1,17 @@
+.wrapper {
+    height: 213px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: var(--light_violet);
+    background-image: url('../../../public/assets/img/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+
+    .action {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+    }
+}

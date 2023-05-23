@@ -9,13 +9,21 @@
     justify-content: space-between;
     z-index: 100;
     padding: 0 15px;
+    transition: all .3s ease;
     
+
+    .back.hide {
+        opacity: 0;
+        pointer-events: none;
+        touch-action: none;
+    }
     .back {
         flex: 0 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
+        transition: all .3s ease;
 
         .icon {
             font-size: 12px;
@@ -37,6 +45,7 @@
         flex: 0 0 auto;
         width: 30px;
         height: 30px;
+        // border: 1px solid #fff;
 
         .in {
             position: relative;
@@ -49,9 +58,12 @@
             border-radius: 100px;
             background-color: #fff;
             display: block;
+            width: 15px;
+            left: calc(50% - 7.5px);
+            transition: all .3s ease;
 
             &:nth-child(1) {
-                top: 0;
+                top: 5px;
             }
 
             &:nth-child(2) {
@@ -59,9 +71,31 @@
             }
 
             &:nth-child(3) {
-                bottom: 0;
+                bottom: 5px;
             }
 
         }
     }
+
+    .burger.active {
+
+        span {
+            &:nth-child(1) {
+                top: calc(50% - 0.5px);
+                transform: rotate(45deg);
+            }
+            &:nth-child(2) {
+                opacity: 0;
+            }
+            &:nth-child(3) {
+                bottom: calc(50% - 0.5px);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+.wrapper.active {
+    background-color: var(--violet);
+
 }

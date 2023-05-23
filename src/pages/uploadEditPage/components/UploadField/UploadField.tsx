@@ -3,7 +3,7 @@ import getBase64 from '../../../../helpers/getBase64';
 import { IUploadField } from '../../types';
 import {FC, useState} from 'react';
 import { MoonLoader } from 'react-spinners';
-
+import {motion} from 'framer-motion';
 
 const UploadField:FC<IUploadField> = ({
     onComplete
@@ -12,10 +12,30 @@ const UploadField:FC<IUploadField> = ({
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.files?.length) {
+            const file = e.target.files[0]
             setLoad(true)
-            getBase64(e.target.files[0]).then(res => {
-                onComplete && onComplete(res)
-            }).finally(() => setLoad(false))
+
+            
+            // getBase64(e.target.files[0]).then(res => {
+            //     onComplete && onComplete(res)
+            // }).finally(() => setLoad(false))
+
+
+
+            // const img = new Image();
+            // img.onload = function () {
+            //     if(img.width === 100 && img.height === 100) {
+            //         onComplete && onComplete(file)
+            //     } else {
+            //         // console.log('error')
+            //         alert('Размер картинки не соответствует требованию (100x100)')
+            //     }
+            //     setLoad(false)
+            // };
+            //img.src = URL.createObjectURL(file);
+
+            
+            onComplete && onComplete(file)
         }
     }
 

@@ -8,7 +8,6 @@ const mainSlice = createSlice({
     reducers: {
         main_updateToken: (state, action) => {state.token = action.payload},
         main_deleteToken: state => {state.token = null},
-
         main_menuClose: state => {state.isMenuOpen = false},
         main_menuOpen: state  => {state.isMenuOpen = true},
     }
