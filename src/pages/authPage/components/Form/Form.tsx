@@ -2,15 +2,23 @@ import styles from './Form.module.scss';
 import Input from '../../../../components/Input/Input';
 import { Row, Col } from 'antd';
 import Button from '../../../../components/Button/Button';
+import { useState, FC, ChangeEvent } from 'react';
+import MainApi from '../../../../service/MainApi';
 
+const apiMain = new MainApi()
 
-const Form = ({
+const Form:FC<{
+    onSubmit: (...args: any) => any,
+    loginLoad: boolean,
+}> = ({
     onSubmit
-}: {
-    onSubmit: (...args: any) => any
 }) => {
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
 
-    
+
+   
+
 
     return (
         <div className={styles.wrapper}>
@@ -23,21 +31,26 @@ const Form = ({
                         <Col span={24}>
                             <Input
                                 placeholder='Номер телефона'
+                                value={phone}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
                                 />
                         </Col>
                         <Col span={24}>
                             <Input
                                 placeholder='Пароль'
                                 type='password'
+                                value={password}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                                 />
                         </Col>
                     </Row>
                 </div>
                 <div className={styles.action}>
                     <Button
-                        onClick={onSubmit}
+                        onClick={() => onSubmit({password, phone})}
                         type='button'
                         text='Вход'
+                        disabled={!(password && phone)}
                         fill
                         />
                 </div>

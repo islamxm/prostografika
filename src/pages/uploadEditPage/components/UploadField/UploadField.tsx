@@ -4,6 +4,9 @@ import { IUploadField } from '../../types';
 import {FC, useState} from 'react';
 import { MoonLoader } from 'react-spinners';
 import {motion} from 'framer-motion';
+import MainApi from '../../../../service/MainApi';
+
+const apiMain = new MainApi()
 
 const UploadField:FC<IUploadField> = ({
     onComplete
@@ -15,7 +18,15 @@ const UploadField:FC<IUploadField> = ({
             const file = e.target.files[0]
             setLoad(true)
 
-            
+            const data = new FormData()
+            data.append('file', file)
+
+            apiMain.fileToBase64(data).then(res => {
+                console.log(res)
+                onComplete && onComplete(res)
+            })
+
+
             // getBase64(e.target.files[0]).then(res => {
             //     onComplete && onComplete(res)
             // }).finally(() => setLoad(false))
@@ -35,7 +46,7 @@ const UploadField:FC<IUploadField> = ({
             //img.src = URL.createObjectURL(file);
 
             
-            onComplete && onComplete(file)
+            // onComplete && onComplete(file)
         }
     }
 

@@ -31,7 +31,7 @@ const EditField = () => {
                 {
                     uploadedFile ? 
                         <div className={styles.image}>
-                            <img src={URL.createObjectURL(uploadedFile)} alt="" />
+                            {/* <img src={URL.createObjectURL(uploadedFile)} alt="" /> */}
                         </div>    
                     : <UploadField onComplete={setUploadedFile}/>
                 }

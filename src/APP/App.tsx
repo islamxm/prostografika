@@ -11,6 +11,10 @@ import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import UploadEditPage from "../pages/uploadEditPage/UploadEditPage";
 import CardsPage from "../pages/cardsPage/CardsPage";
+
+//  "start": "set HTTPS=true&&set SSL_CRT_FILE=C:/Windows/System32/cert.crt&&set SSL_KEY_FILE=C:/Windows/System32/cert.key&&react-scripts start",
+
+
 const App:FC = () => {
     const location = useLocation()
 
