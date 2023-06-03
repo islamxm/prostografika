@@ -28,4 +28,7 @@ const endpoints = {
     markets: `${PATH_MAIN_API}marketplaces/`
 }
 
+
+
+
 export default endpoints;
