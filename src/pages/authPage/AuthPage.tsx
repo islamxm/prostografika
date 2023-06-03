@@ -19,6 +19,7 @@ const AuthPage:FC = () => {
     const [acceptPolicy, setAcceptPolicy] = useState(false)
     const [loginLoad, setLoginLoad] = useState(false)
     const [error, setError] = useState(false)
+    const [saveMe, setSaveMe] = useState(false)
 
 
     useEffect(() => {
@@ -28,14 +29,14 @@ const AuthPage:FC = () => {
 
 
     const onSubmit = (body: {password: string, phone: string}) => {
-        // nav('/format')
         if(acceptPolicy) {
             setLoginLoad(true)
             apiMain.auth(body).then(res => {
-                console.log(res)
                 if(res?.auth_token) {
                     dispatch(main_updateToken(res?.auth_token))
-                    Cookies.set('prostografika-token', res?.auth_token)
+                    if(saveMe) {
+                        Cookies.set('prostografika-token', res?.auth_token)
+                    }
                     nav('/format')
                 } else {
                     alert('Произошла ошибка')
@@ -56,6 +57,8 @@ const AuthPage:FC = () => {
             className={styles.wrapper}>
             <div className={styles.main}>
                 <Form
+                    saveMe={saveMe}
+                    setSaveMe={setSaveMe}
                     error={error}
                     loginLoad={loginLoad}
                     onSubmit={onSubmit}

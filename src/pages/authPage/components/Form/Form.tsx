@@ -4,18 +4,22 @@ import { Row, Col } from 'antd';
 import Button from '../../../../components/Button/Button';
 import { useState, FC, ChangeEvent } from 'react';
 import MainApi from '../../../../service/MainApi';
+import Checkbox from '../../../../components/Checkbox/Checkbox';
 
 const apiMain = new MainApi()
 
 const Form:FC<{
     onSubmit: (...args: any) => any,
     loginLoad: boolean,
-
+    saveMe?: boolean,
+    setSaveMe: (...args: any[]) => any
     error?: boolean
 }> = ({
     onSubmit,
     error,
-    loginLoad
+    loginLoad,
+    saveMe,
+    setSaveMe
 }) => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -47,6 +51,14 @@ const Form:FC<{
                                 type='password'
                                 value={password}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                                />
+                        </Col>
+                        <Col span={24}>
+                            <Checkbox
+                                checked={saveMe}
+                                onChange={(e:ChangeEvent<HTMLInputElement>) => setSaveMe(e.target.checked)}
+                                id='saveme'
+                                body={'Запомнить меня'}
                                 />
                         </Col>
                     </Row>
