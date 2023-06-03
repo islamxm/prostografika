@@ -11,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import UploadEditPage from "../pages/uploadEditPage/UploadEditPage";
 import CardsPage from "../pages/cardsPage/CardsPage";
+import CheckAuth from "../hoc/CheckAuth";
 
 //  "start": "set HTTPS=true&&set SSL_CRT_FILE=C:/Windows/System32/cert.crt&&set SSL_KEY_FILE=C:/Windows/System32/cert.key&&react-scripts start",
 
@@ -24,12 +25,12 @@ const App:FC = () => {
             <Wrapper>
                 <AnimatePresence mode="wait" initial={false}>
                     <Routes location={location} key={location.pathname}>
-                        <Route path="/" element={<StartPage/>}/>
-                        <Route path="/auth" element={<AuthPage/>}/>
-                        <Route path="/format" element={<FormatPage/>}/>
-                        <Route path="/pricing" element={<PricingPage/>}/>
-                        <Route path="/upload_edit" element={<UploadEditPage/>}/>
-                        <Route path="/my_cards" element={<CardsPage/>}/>
+                        <Route path="/" element={<CheckAuth><StartPage/></CheckAuth>}/>
+                        <Route path="/auth" element={<CheckAuth><AuthPage/></CheckAuth>}/>
+                        <Route path="/format" element={<CheckAuth><FormatPage/></CheckAuth>}/>
+                        <Route path="/pricing" element={<CheckAuth><PricingPage/></CheckAuth>}/>
+                        <Route path="/upload_edit" element={<CheckAuth><UploadEditPage/></CheckAuth>}/>
+                        <Route path="/my_cards" element={<CheckAuth><CardsPage/></CheckAuth>}/>
                     </Routes>
                 </AnimatePresence>
               

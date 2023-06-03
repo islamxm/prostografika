@@ -10,8 +10,11 @@ const apiMain = new MainApi()
 const Form:FC<{
     onSubmit: (...args: any) => any,
     loginLoad: boolean,
+
+    error?: boolean
 }> = ({
-    onSubmit
+    onSubmit,
+    error
 }) => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -30,6 +33,7 @@ const Form:FC<{
                     <Row gutter={[12,12]}>
                         <Col span={24}>
                             <Input
+                                error={error}
                                 placeholder='Номер телефона'
                                 value={phone}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
@@ -37,6 +41,7 @@ const Form:FC<{
                         </Col>
                         <Col span={24}>
                             <Input
+                                error={error}
                                 placeholder='Пароль'
                                 type='password'
                                 value={password}

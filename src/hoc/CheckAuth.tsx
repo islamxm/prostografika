@@ -1,5 +1,5 @@
 import { useAppSelector } from "../hooks/reduxHooks";
-
+import { Navigate } from "react-router-dom";
 
 const CheckAuth = ({
     children
@@ -8,8 +8,14 @@ const CheckAuth = ({
 }) => {
     const {mainReducer: token} = useAppSelector(s => s)
 
+    
 
-    return children;
+
+    if(token) {
+        return <>{children}</>
+    } 
+
+    return <Navigate to={'/auth'}/>;
 
 }
 

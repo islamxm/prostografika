@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import styles from './StartPage.module.scss';
 import Button from "../../components/Button/Button";
 import {Row, Col} from 'antd';
@@ -7,6 +7,7 @@ import {Row, Col} from 'antd';
 import {motion, Variants} from 'framer-motion';
 import { useNavigate } from "react-router-dom";
 import pageEnterExitAnim from "../../utils/pageEnterExitAnim";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 
 const itemAnim:Variants  = {
@@ -27,7 +28,13 @@ const itemAnim:Variants  = {
 }
 
 const StartPage:FC = () => {
+    const {token} = useAppSelector(s => s.mainReducer)
     const nav = useNavigate()
+
+    useEffect(() => {
+        token && nav('/my_cards')
+    }, [token])
+
 
     return (
 

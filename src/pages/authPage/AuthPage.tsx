@@ -6,16 +6,26 @@ import {motion} from 'framer-motion';
 import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import { useNavigate } from 'react-router-dom';
 import MainApi from '../../service/MainApi';
-import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { main_updateToken } from '../../store/slices/mainSlice/mainSlice';
-
+import { Cookies } from 'typescript-cookie';
+import {useEffect} from 'react';
 const apiMain = new MainApi()
 
 const AuthPage:FC = () => {
     const dispatch = useAppDispatch()
+    const {token} = useAppSelector(s => s.mainReducer)
     const nav = useNavigate()
     const [acceptPolicy, setAcceptPolicy] = useState(false)
     const [loginLoad, setLoginLoad] = useState(false)
+    const [error, setError] = useState(false)
+
+
+    useEffect(() => {
+        token && nav('/my_cards')
+    }, [token])
+    
+
 
     const onSubmit = (body: {password: string, phone: string}) => {
         // nav('/format')
@@ -23,10 +33,13 @@ const AuthPage:FC = () => {
         if(acceptPolicy) {
             setLoginLoad(true)
             apiMain.auth(body).then(res => {
-                console.log(res)
                 if(res?.auth_token) {
                     dispatch(main_updateToken(res?.auth_token))
-                    
+                    Cookies.set('prostografika-token', res?.auth_token)
+                    nav('/format')
+                } else {
+                    alert('Произошла ошибка')
+                    setError(true)
                 }
             }).finally(() => {
                 setLoginLoad(false)
@@ -34,7 +47,6 @@ const AuthPage:FC = () => {
         } else {
             alert('Нужно принять политику конфиденциальности')
         }
-        
     }
 
     return (    
@@ -43,6 +55,7 @@ const AuthPage:FC = () => {
             className={styles.wrapper}>
             <div className={styles.main}>
                 <Form
+                    error={error}
                     loginLoad={loginLoad}
                     onSubmit={onSubmit}
                     />
@@ -62,6 +75,17 @@ const AuthPage:FC = () => {
             </div>
         </motion.div>
     )
+}
+
+const text = 
+{
+    color: '#fff',
+    title: 'Ozon',
+    size: {
+        x: 900, 
+        y: 1200
+    },
+    id: 1
 }
 
 export default AuthPage;
