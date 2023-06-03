@@ -21,10 +21,6 @@ const UploadField:FC<IUploadField> = ({
             const data = new FormData()
             data.append('file', file)
 
-            apiMain.fileToBase64(data).then(res => {
-                console.log(res)
-                onComplete && onComplete(res)
-            })
 
 
             // getBase64(e.target.files[0]).then(res => {

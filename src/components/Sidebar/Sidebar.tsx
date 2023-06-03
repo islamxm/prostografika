@@ -5,14 +5,20 @@ import Headline from '../Headline/Headline';
 import {Row, Col} from 'antd';
 import Item from './components/Item/Item';
 import { Cookies } from 'typescript-cookie';
-import { main_deleteToken } from '../../store/slices/mainSlice/mainSlice';
-
+import { main_deleteToken, main_updateLoading } from '../../store/slices/mainSlice/mainSlice';
+import { useNavigate } from 'react-router-dom';
 const Sidebar:FC = () => {
     const {isMenuOpen} = useAppSelector(s => s.mainReducer)
     const dispatch = useAppDispatch()
-    
-    const onLogout = () => {
+    const nav = useNavigate()
 
+    const onLogout = () => {
+        dispatch(main_updateLoading(true))
+        dispatch(main_deleteToken())
+
+        Cookies.remove('prostografika-token')
+        nav('/auth')
+        dispatch(main_updateLoading(false))
     }   
 
     return (

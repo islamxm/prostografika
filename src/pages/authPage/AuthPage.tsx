@@ -29,10 +29,10 @@ const AuthPage:FC = () => {
 
     const onSubmit = (body: {password: string, phone: string}) => {
         // nav('/format')
-
         if(acceptPolicy) {
             setLoginLoad(true)
             apiMain.auth(body).then(res => {
+                console.log(res)
                 if(res?.auth_token) {
                     dispatch(main_updateToken(res?.auth_token))
                     Cookies.set('prostografika-token', res?.auth_token)
@@ -49,6 +49,7 @@ const AuthPage:FC = () => {
         }
     }
 
+    if(token) return null
     return (    
         <motion.div 
             {...pageEnterExitAnim}
@@ -77,15 +78,15 @@ const AuthPage:FC = () => {
     )
 }
 
-const text = 
-{
-    color: '#fff',
-    title: 'Ozon',
-    size: {
-        x: 900, 
-        y: 1200
-    },
-    id: 1
-}
+// const text = 
+// {
+//     color: '#fff',
+//     title: 'Ozon',
+//     size: {
+//         x: 900, 
+//         y: 1200
+//     },
+//     id: 1
+// }
 
 export default AuthPage;

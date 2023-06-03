@@ -36,6 +36,7 @@ const StartPage:FC = () => {
     }, [token])
 
 
+    if(token) return null
     return (
 
         <motion.div 

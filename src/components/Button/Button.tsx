@@ -1,7 +1,7 @@
 import styles from './Button.module.scss';
 import {FC} from 'react';
 import { buttonType, buttonVariants, buttonView } from './types';
-
+import {LoadingOutlined} from '@ant-design/icons';
 const Button:FC<buttonType> = (props) => {
 
     const {
@@ -11,7 +11,8 @@ const Button:FC<buttonType> = (props) => {
         afterIcon,
         beforeIcon,
         icon,
-        fill
+        fill,
+        load
     } = props
 
     const switchVariant = (variant: buttonVariants) => {
@@ -41,33 +42,34 @@ const Button:FC<buttonType> = (props) => {
         <button
             {...props}
             type='button'
-            className={`${styles.wrapper} ${switchVariant(variant)} ${switchView(view)} ${fill ? styles.fill : ''}`}
+            className={`${styles.wrapper} ${switchVariant(variant)} ${switchView(view)} ${fill ? styles.fill : ''} ${load ? styles.load : ''}`}
             >
             {
-                icon ? (
-                    <div className={styles.icon}>{icon}</div>
-                ) : null
+                load && <div className={styles.load}><LoadingOutlined/></div>
             }
             {
-                beforeIcon ? (
+                icon && <div className={styles.icon}>{icon}</div>
+            }
+            {
+                beforeIcon && (
                     <div className={styles.before}>
                         {beforeIcon}
                     </div>
-                ) : null
+                )
             }
             {
-                text ? (
+                text && (
                     <div className={styles.text}>
                         {text}
                     </div>
-                ) : null
+                )
             }
             {
-                afterIcon ? (
+                afterIcon && (
                     <div className={styles.after}>
                         {afterIcon}
                     </div>
-                ) : null
+                )
             }
         </button>
     )

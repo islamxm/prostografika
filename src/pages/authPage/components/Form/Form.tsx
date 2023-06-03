@@ -14,7 +14,8 @@ const Form:FC<{
     error?: boolean
 }> = ({
     onSubmit,
-    error
+    error,
+    loginLoad
 }) => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -55,6 +56,7 @@ const Form:FC<{
                         onClick={() => onSubmit({password, phone})}
                         type='button'
                         text='Вход'
+                        load={loginLoad}
                         disabled={!(password && phone)}
                         fill
                         />

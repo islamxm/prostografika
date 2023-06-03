@@ -1,3 +1,17 @@
+.wrapper.load {
+    .text, .before, .after {
+        opacity: 0;
+    }
+}
+
+.wrapper {
+    position: relative;
+
+    .before, .after, .text {
+        transition: all .3s ease;
+    }
+}
+
 .wrapper.button_def {
     padding: 15px 30px;
     color: #fff;
@@ -10,6 +24,18 @@
     overflow: hidden;
     transition: all .2s ease;
     font-weight: 700;
+
+    .load {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
     
     .icon {
         display: none;

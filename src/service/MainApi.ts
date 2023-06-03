@@ -7,20 +7,6 @@ const headers = {
 class MainApi {
 
 
-    //utils
-    fileToBase64 = async (body: FormData) => {
-        try {
-            let res = await fetch(endpoints.fileToBase64, {
-                method: 'POST',
-                body
-            })
-
-            return await res?.json()
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
     auth = async (body: {password: string, phone: string}) => {
         try {
             let res = await fetch(endpoints.auth, {
