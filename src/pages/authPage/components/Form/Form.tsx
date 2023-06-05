@@ -79,7 +79,7 @@ const Form:FC<{
                             <a href="#">Забыл пароль?</a>
                         </Col>
                         <Col span={24}>
-                            <span>Нет аккаунта? <a href="#">Регистрация</a></span>
+                            <span>Нет аккаунта? <a href="https://t.me/akmalovichdevbot">Регистрация</a></span>
                         </Col>
                     </Row>
                 </div>
