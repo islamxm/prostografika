@@ -6,12 +6,14 @@ import {MdLock} from 'react-icons/md';
 import IconButton from '../../../../IconButton/IconButton';
 import {BiEraser} from 'react-icons/bi';
 import PebApi from '../../../../service/PebApi';
+import { useAppSelector } from '../../../../hooks/reduxHooks';
+import MainApi from '../../../../service/MainApi';
 
 
-
-const apiPeb = new PebApi()
+const service = new MainApi()
 
 const EditField = () => {
+    const {token} = useAppSelector(s => s.mainReducer)
     const [uploadedFile, setUploadedFile] = useState<File>() 
 
     useEffect(() => {
@@ -19,11 +21,20 @@ const EditField = () => {
     }, [uploadedFile])
 
 
-    const removeBg = () => {
-        // apiPeb.removeBg({image: uploadedFile}, '06e6d852-ada5-4ad2-b77c-3521fcf18e56').then(res => {
-        //     console.log(res)
-        // })
-    }
+    useEffect(() => {
+        if(token) {
+            service.peb_credits(token).then(res => {
+                console.log(res)
+            })
+        }
+    }, [token])
+
+
+    
+
+
+
+    
     
     return (
         <div className={styles.wrapper}>

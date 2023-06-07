@@ -4,9 +4,28 @@ import { Row, Col } from 'antd';
 import {motion} from 'framer-motion';
 import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import MainApi from '../../service/MainApi';
+import {useState, useEffect} from 'react';
+
+
+const service = new MainApi()
 
 const FormatPage = () => {
+    const {token} = useAppSelector(s => s.mainReducer)
     const navigate = useNavigate()
+    const [list, setList] = useState<any[]>([])
+
+
+    useEffect(() => {
+        if(token) {
+            service.getMarkets(token).then(res => {
+                console.log(res)
+            })
+        }
+    }, [token])
+
+
 
 
     return (

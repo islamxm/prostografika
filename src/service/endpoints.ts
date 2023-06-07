@@ -25,7 +25,12 @@ const endpoints = {
 
 
     // MARKETPLACES
-    markets: `${PATH_MAIN_API}marketplaces/`
+    markets: `${PATH_MAIN_API}marketplaces/`,
+    peb_credits: `${PATH_MAIN_API}api_proxy/credits/`,
+    peb_removeBg: `${PATH_MAIN_API}api_proxy/remove-background/`,
+    peb_createBg: `${PATH_MAIN_API}api_proxy/create-background/`,
+
+    file2b64: `${PATH_MAIN_API}utility/file2b64`,
 }
 
 

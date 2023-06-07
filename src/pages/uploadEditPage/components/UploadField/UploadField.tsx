@@ -5,12 +5,14 @@ import {FC, useState} from 'react';
 import { MoonLoader } from 'react-spinners';
 import {motion} from 'framer-motion';
 import MainApi from '../../../../service/MainApi';
+import { useAppSelector } from '../../../../hooks/reduxHooks';
 
-const apiMain = new MainApi()
+const service = new MainApi()
 
 const UploadField:FC<IUploadField> = ({
     onComplete
 }) => {
+    const {token} = useAppSelector(s => s.mainReducer)
     const [load, setLoad] = useState(false)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,28 +23,16 @@ const UploadField:FC<IUploadField> = ({
             const data = new FormData()
             data.append('file', file)
 
-
-
-            // getBase64(e.target.files[0]).then(res => {
-            //     onComplete && onComplete(res)
-            // }).finally(() => setLoad(false))
-
-
-
-            // const img = new Image();
-            // img.onload = function () {
-            //     if(img.width === 100 && img.height === 100) {
-            //         onComplete && onComplete(file)
-            //     } else {
-            //         // console.log('error')
-            //         alert('Размер картинки не соответствует требованию (100x100)')
-            //     }
-            //     setLoad(false)
-            // };
-            //img.src = URL.createObjectURL(file);
-
             
-            // onComplete && onComplete(file)
+            if(token) {
+                service.getBase64(token, data).then(res => {
+                    console.log(res)
+                }).finally(() => {
+                    setLoad(false)
+                })
+            }
+
+
         }
     }
 

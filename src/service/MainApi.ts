@@ -62,6 +62,98 @@ class MainApi {
             console.log(err)
         }
     }
+
+
+    getMarkets = async (
+        token: any, 
+        {
+            limit, 
+            offset
+        }: 
+        {
+            limit: 10, 
+            offset: 0
+        } = 
+        {
+            limit: 10, 
+            offset: 0
+        }) => {
+        try {
+            let res = await fetch(endpoints.markets + `?limit=${limit}&offset=${offset}`, {
+                method: 'GET',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+
+    peb_credits = async (token: any) => {
+        try {
+            let res = await fetch(endpoints.peb_credits, {
+                method: 'GET',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+
+    peb_removeBg = async (token:any) => {
+        try {
+            let res = await fetch(endpoints.peb_removeBg, {
+                method: 'POST',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    peb_createBg = async (token: any) => {
+        try {
+            let res = await fetch(endpoints.peb_createBg, {
+                method: 'POST',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    getBase64 = async (token: any, body: FormData) => {
+        try {
+            let res = await fetch(endpoints.file2b64, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${token}`
+                },
+                body
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
 }
 
 export default MainApi
