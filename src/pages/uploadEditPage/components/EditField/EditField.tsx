@@ -14,24 +14,21 @@ const service = new MainApi()
 
 const EditField = () => {
     const {token} = useAppSelector(s => s.mainReducer)
-    const [uploadedFile, setUploadedFile] = useState<File>() 
-
-    useEffect(() => {
-        console.log(uploadedFile)
-    }, [uploadedFile])
-
-
-    useEffect(() => {
-        if(token) {
-            service.peb_credits(token).then(res => {
-                console.log(res)
-            })
-        }
-    }, [token])
-
+    const [uploadedFile, setUploadedFile] = useState<string>('') 
+    
 
     
 
+
+    
+    const removeBg = () => {
+        if(uploadedFile && token) {
+
+            service.peb_removeBg(token, {image: uploadedFile}).then(res => {
+                console.log(res)
+            })
+        }
+    }
 
 
     
@@ -42,7 +39,7 @@ const EditField = () => {
                 {
                     uploadedFile ? 
                         <div className={styles.image}>
-                            {/* <img src={URL.createObjectURL(uploadedFile)} alt="" /> */}
+                            <img src={`${uploadedFile}`} alt="" />
                         </div>    
                     : <UploadField onComplete={setUploadedFile}/>
                 }
@@ -51,6 +48,7 @@ const EditField = () => {
                 <div className={styles.action_main}>
                     <div className={styles.item}>
                     <Button
+                        onClick={removeBg}
                         disabled={!uploadedFile}
                         text='Вырезать фон'
                         variant={'violet'}

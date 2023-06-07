@@ -109,7 +109,7 @@ class MainApi {
     }
 
 
-    peb_removeBg = async (token:any) => {
+    peb_removeBg = async (token:any, body: {image: string}) => {
         try {
             let res = await fetch(endpoints.peb_removeBg, {
                 method: 'POST',
@@ -117,6 +117,7 @@ class MainApi {
                     ...headers,
                     'Authorization': `Token ${token}`
                 },
+                body:JSON.stringify(body)
             })
             return await res?.json()
         } catch(err) {
