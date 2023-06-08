@@ -23,12 +23,20 @@ const EditField = () => {
     
     const removeBg = () => {
         if(uploadedFile && token) {
-
-            service.peb_removeBg(token, {image: uploadedFile}).then(res => {
-                console.log(res)
-            })
+            const data = new FormData()
+            data.append('image', uploadedFile)
+            // service.peb_credits(token).then(res => {
+            //     console.log(res)
+            // })
+            // service.peb_removeBg(token, {image: uploadedFile}).then(res => {
+            //     console.log(res)
+            // })
         }
     }
+
+    // useEffect(() => {
+    //     removeBg()
+    // }, [uploadedFile])
 
 
     
@@ -39,7 +47,7 @@ const EditField = () => {
                 {
                     uploadedFile ? 
                         <div className={styles.image}>
-                            <img src={`${uploadedFile}`} alt="" />
+                            <img src={'data:image/png;base64,' + uploadedFile} alt="" />
                         </div>    
                     : <UploadField onComplete={setUploadedFile}/>
                 }

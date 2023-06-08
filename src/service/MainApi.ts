@@ -115,9 +115,10 @@ class MainApi {
                 method: 'POST',
                 headers: {
                     ...headers,
+                    'Accept': 'application/json',
                     'Authorization': `Token ${token}`
                 },
-                body:JSON.stringify(body)
+                body: JSON.stringify(body)
             })
             return await res?.json()
         } catch(err) {

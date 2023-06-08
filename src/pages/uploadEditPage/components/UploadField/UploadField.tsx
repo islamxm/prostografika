@@ -25,19 +25,20 @@ const UploadField:FC<IUploadField> = ({
 
             
             if(token) {
-                // service.getBase64(token, data).then(res => {
-                //     if(res?.conv_file) {
-                //         onComplete && onComplete(res?.conv_file)
-                //     }
-                // }).finally(() => {
-                //     setLoad(false)
-                // })
-                setLoad(true)
-                getBase64(file).then(res => {
-                    if(res) {
-                        onComplete && onComplete(res)
+                service.getBase64(token, data).then(res => {
+                    console.log(res?.conv_file)
+                    if(res?.conv_file) {
+                        onComplete && onComplete(res?.conv_file)
                     }
-                }).finally(() => setLoad(false))
+                }).finally(() => {
+                    setLoad(false)
+                })
+                // setLoad(true)
+                // getBase64(file).then(res => {
+                //     if(res) {
+                //         onComplete && onComplete(res)
+                //     }
+                // }).finally(() => setLoad(false))
             }
 
 
