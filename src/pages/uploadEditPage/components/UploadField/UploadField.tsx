@@ -26,7 +26,6 @@ const UploadField:FC<IUploadField> = ({
             
             if(token) {
                 service.getBase64(token, data).then(res => {
-                    console.log(res?.conv_file)
                     if(res?.conv_file) {
                         onComplete && onComplete(res?.conv_file)
                     }

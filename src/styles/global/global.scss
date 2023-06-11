@@ -42,6 +42,29 @@ body {
 }
 
 
+.test-canvas {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: -1;
+    // border: 1px solid red;
+
+    visibility: visible;
+    z-index: 3;
+
+  
+}
+
+// .test-canvas.active {
+//     visibility: visible;
+//     z-index: 3;
+// }
+
+
+
+
 
 
 
