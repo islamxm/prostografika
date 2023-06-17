@@ -9,7 +9,12 @@ export interface buttonType extends HTMLProps<HTMLButtonElement> {
     icon?: ReactNode,
     fill?: boolean,
     bottomLabel?: string,
-    load?: boolean
+    load?: boolean,
+    exText?: string,
+    link?: {
+        url: string,
+    },
+    download?: string
 }
 
 export type buttonVariants = 'violet' | 'aqua' | 'light-violet'

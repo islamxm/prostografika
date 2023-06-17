@@ -93,6 +93,22 @@ class MainApi {
     }
 
 
+    getMarket = async (id: number | string, token?: any) => {
+        try {
+            let res = await fetch(endpoints.markets + id, {
+                method: 'GET',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            return await res?.json()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+
     peb_credits = async (token: any) => {
         try {
             let res = await fetch(endpoints.peb_credits, {

@@ -39,8 +39,6 @@ const UploadField:FC<IUploadField> = ({
                 //     }
                 // }).finally(() => setLoad(false))
             }
-
-
         }
     }
 

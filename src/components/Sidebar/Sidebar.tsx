@@ -7,8 +7,14 @@ import Item from './components/Item/Item';
 import { Cookies } from 'typescript-cookie';
 import { main_deleteToken, main_updateLoading } from '../../store/slices/mainSlice/mainSlice';
 import { useNavigate } from 'react-router-dom';
+import MainApi from '../../service/MainApi';
+
+
+const service = new MainApi()
+
 const Sidebar:FC = () => {
     const {isMenuOpen} = useAppSelector(s => s.mainReducer)
+    const {token} = useAppSelector(s => s.mainReducer)
     const dispatch = useAppDispatch()
     const nav = useNavigate()
 
@@ -20,6 +26,16 @@ const Sidebar:FC = () => {
         nav('/auth')
         dispatch(main_updateLoading(false))
     }   
+
+
+    const getPebCredits = () => {
+        if(token) {
+            service.peb_credits(token).then(res => {
+                console.log(res)
+                alert(`Баланс Pebblely API: ${res?.credits}`)
+            })
+        }
+    }
 
     return (
         <div className={`${styles.wrapper} ${isMenuOpen && styles.active}`}>
@@ -72,8 +88,15 @@ const Sidebar:FC = () => {
                         </Col> 
                         <Col span={24}>
                             <Item
+                                isDanger
                                 label='Выход'
                                 onClick={onLogout}
+                                />
+                        </Col>
+                        <Col span={24}> 
+                            <Item
+                                label='Get Pebblely Credits'
+                                onClick={getPebCredits}
                                 />
                         </Col>
                     </Row>

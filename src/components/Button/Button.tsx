@@ -12,7 +12,9 @@ const Button:FC<buttonType> = (props) => {
         beforeIcon,
         icon,
         fill,
-        load
+        load,
+        exText,
+        download
     } = props
 
     const switchVariant = (variant: buttonVariants) => {
@@ -37,6 +39,46 @@ const Button:FC<buttonType> = (props) => {
         }
     }
 
+    if(download) {
+        return (
+            <a
+                href={download}
+                download={download}
+                // target='_blank'
+                // rel="noreferrer"
+                className={`${styles.wrapper} ${switchVariant(variant)} ${switchView(view)} ${fill ? styles.fill : ''} ${load ? styles.load : ''}`}
+                >
+                {
+                    load && <div className={styles.load}><LoadingOutlined/></div>
+                }
+                {
+                    icon && <div className={styles.icon}>{icon}</div>
+                }
+                {
+                    beforeIcon && (
+                        <div className={styles.before}>
+                            {beforeIcon}
+                        </div>
+                    )
+                }
+                {
+                    text && (
+                        <div className={styles.text}>
+                            {text}
+                            {exText && <span>{exText}</span>}
+                        </div>
+                    )
+                }
+                {
+                    afterIcon && (
+                        <div className={styles.after}>
+                            {afterIcon}
+                        </div>
+                    )
+                }
+            </a>
+        )
+    }
 
     return (
         <button
@@ -61,6 +103,7 @@ const Button:FC<buttonType> = (props) => {
                 text && (
                     <div className={styles.text}>
                         {text}
+                        {exText && <span>{exText}</span>}
                     </div>
                 )
             }

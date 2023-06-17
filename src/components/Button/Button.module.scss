@@ -10,6 +10,17 @@
     .before, .after, .text {
         transition: all .3s ease;
     }
+
+    .text {
+        span {
+            display: block;
+            text-align: center;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: -0.04em;
+        }
+    }
 }
 
 .wrapper.button_def {

@@ -24,3 +24,16 @@
         color: #fff;
     }
 }
+
+.wrapper.danger {
+    // background: rgba(red, 0.2);
+    border: 1px solid var(--red);
+    background-color: rgba(#FF6161, .1);
+
+    .label {
+        color: var(--red);
+    }
+    .icon {
+        display: none;
+    }
+}

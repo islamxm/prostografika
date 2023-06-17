@@ -4,14 +4,15 @@ import { Row, Col } from 'antd';
 import {motion} from 'framer-motion';
 import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
 import MainApi from '../../service/MainApi';
 import {useState, useEffect} from 'react';
-
+import { main_updateMarketId, main_updateLoading } from '../../store/slices/mainSlice/mainSlice';
 
 const service = new MainApi()
 
 const FormatPage = () => {
+    const dispatch = useAppDispatch()
     const {token} = useAppSelector(s => s.mainReducer)
     const navigate = useNavigate()
     const [list, setList] = useState<any[]>([])
@@ -19,13 +20,19 @@ const FormatPage = () => {
 
     useEffect(() => {
         if(token) {
+            dispatch(main_updateLoading(true))
             service.getMarkets(token).then(res => {
                 console.log(res)
-            })
+                setList(res?.results)
+            }).finally(() => dispatch(main_updateLoading(false)))
         }
     }, [token])
 
 
+    const onSelectMarket = (id: number | string) => {
+        dispatch(main_updateMarketId(id))
+        navigate('/upload_edit')
+    }
 
 
     return (
@@ -39,21 +46,19 @@ const FormatPage = () => {
                         Для какого маркетплейса создаете карточку?
                         </div>
                     </Col>
-                    <Col span={24}>
-                        <Button
-                            fill
-                            onClick={() => navigate('/upload_edit')}
-                            text='Wildberries'
-                            />
-                    </Col>
-                    <Col span={24}>
-                        <Button
-                            fill
-                            onClick={() => navigate('/upload_edit')}
-                            text='Ozon'
-                            variant={'aqua'}
-                            />
-                    </Col>
+                    {
+                        list?.map(i => (
+                            <Col span={24} key={i.id}>
+                                <Button
+                                    style={{backgroundColor: i.color, paddingTop: 8, paddingBottom: 8}}
+                                    fill
+                                    onClick={() => onSelectMarket(i.id)}
+                                    text={i.title}
+                                    exText={`${i.size_x}x${i.size_y}px`}
+                                    />
+                            </Col>
+                        ))
+                    }
                 </Row>
             </div>
         </motion.div>
