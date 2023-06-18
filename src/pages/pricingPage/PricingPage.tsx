@@ -8,25 +8,25 @@ import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
 
 
-
 const PricingPage = () => {
-
     const [selectedPlan, setSelectedPlan] = useState('2')
 
-    
-
+    useEffect(() => console.log(selectedPlan), [selectedPlan])
 
     return (
-        <motion.div
-            {...pageEnterExitAnim}
-            className={styles.wrapper}
-            >
-            <Headline
-                title='Тарифы'
-                description='У вас закончились бесплатные загрузки. Заберите свой промокод в нашем телеграмм канале. '
-                /> 
-            <PricingBody active={selectedPlan} onSelectPlan={setSelectedPlan}/>
-            <SubmitPromo/>
+        <>
+            <motion.div
+                {...pageEnterExitAnim}
+                className={styles.wrapper}
+                >
+                <Headline
+                    title='Тарифы'
+                    description='У вас закончились бесплатные загрузки. Заберите свой промокод в нашем телеграмм канале. '
+                    /> 
+                <PricingBody active={selectedPlan} onSelectPlan={setSelectedPlan}/>
+                <SubmitPromo/>
+                
+            </motion.div>
             <div className={styles.action}>
                 <Button
                     text='Оплатить'
@@ -34,7 +34,9 @@ const PricingPage = () => {
                     disabled={!selectedPlan}
                     />
             </div>
-        </motion.div>
+        </>
+        
+        
     )
 }
 

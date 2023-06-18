@@ -1,12 +1,14 @@
 .wrapper {
     position: relative;
     padding-bottom: 85px;
-    .action {
-        padding: 0 45px;
-        position: fixed;
-        bottom: 25px;
-        left: 0;
-        width: 100%;
-        z-index: 10;
-    }
+    
+}
+
+.action {
+    padding: 0 45px;
+    position: fixed;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }

@@ -12,6 +12,9 @@ import { useLocation } from "react-router-dom";
 import UploadEditPage from "../pages/uploadEditPage/UploadEditPage";
 import CardsPage from "../pages/cardsPage/CardsPage";
 import CheckAuth from "../hoc/CheckAuth";
+import TempsPage from "../pages/tempsPage/TempsPage";
+import GensPage from "../pages/gensPage/GensPage";
+import PersonalGenPage from "../pages/personalGenPage/PersonalGenPage";
 
 //  "start": "set HTTPS=true&&set SSL_CRT_FILE=C:/Windows/System32/cert.crt&&set SSL_KEY_FILE=C:/Windows/System32/cert.key&&react-scripts start",
 
@@ -31,6 +34,9 @@ const App:FC = () => {
                         <Route path="/pricing" element={<CheckAuth><PricingPage/></CheckAuth>}/>
                         <Route path="/upload_edit" element={<CheckAuth><UploadEditPage/></CheckAuth>}/>
                         <Route path="/my_cards" element={<CheckAuth><CardsPage/></CheckAuth>}/>
+                        <Route path="/templates" element={<CheckAuth><TempsPage/></CheckAuth>}/>
+                        <Route path="/generations" element={<CheckAuth><GensPage/></CheckAuth>}/>
+                        <Route path="/personal_generation" element={<CheckAuth><PersonalGenPage/></CheckAuth>}/>
                     </Routes>
                 </AnimatePresence>
               

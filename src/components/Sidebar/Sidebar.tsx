@@ -70,7 +70,7 @@ const Sidebar:FC = () => {
                         <Col span={24}>
                             <Item
                                 itemType={1}
-                                link='/history'
+                                link='/generations'
                                 label='История генераций'
                                 />
                         </Col>

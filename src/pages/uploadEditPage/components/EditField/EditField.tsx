@@ -186,6 +186,7 @@ const EditField = () => {
                                         <Button
                                             fill
                                             text='Продолжить'
+                                            onClick={() => navigate('/templates')}
                                             />
                                     </div>
                                     <div className={styles.item}>
@@ -193,6 +194,7 @@ const EditField = () => {
                                             onClick={onReset}
                                             fill
                                             text='Загрузить новое'
+                                            variant={'light-violet'}
                                             />
                                     </div>
                                     <div className={styles.item}>
@@ -200,6 +202,7 @@ const EditField = () => {
                                             onClick={testDownload}
                                             fill
                                             text='Скачать'
+                                            variant={'light-violet'}
                                             />
                                     </div>
                                 </>

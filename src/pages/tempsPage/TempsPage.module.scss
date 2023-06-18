@@ -1,0 +1,46 @@
+.wrapper {
+
+    .body {
+
+        .part {
+
+            .head {
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 22px;
+                letter-spacing: -0.04em;
+                margin-bottom: 12px;
+            }
+
+            .list {
+                display: flex;
+                overflow-x: auto;
+                margin-left: -6px;
+                margin-right: -6px;
+                padding-bottom: 10px;
+
+                .item {
+                    margin: 0 6px;
+                }
+            }
+        }
+
+        .ex {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+
+            .text {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                margin-bottom: 15px;
+            }
+
+            .action {
+
+            }
+
+        }
+    }
+}

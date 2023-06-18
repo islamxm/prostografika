@@ -1,11 +1,77 @@
 import endpoints from "./endpoints";
+import checkAuth from "./checkAuth";
 
 const headers = {
     "Content-Type": "application/json",
 }
 
 class MainApi {
+    peb_credits = async (token: any) => {
+        try {
+            let res = await fetch(endpoints.peb_credits, {
+                method: 'GET',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            const r = await checkAuth(res)
+            return await r
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
+
+    peb_removeBg = async (token:any, body: {image: string}) => {
+        try {
+            let res = await fetch(endpoints.peb_removeBg, {
+                method: 'POST',
+                headers: {
+                    ...headers,
+                    'Accept': 'application/json',
+                    'Authorization': `Token ${token}`
+                },
+                body: JSON.stringify(body)
+            })
+            const r = await checkAuth(res)
+            return await r
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    peb_createBg = async (token: any) => {
+        try {
+            let res = await fetch(endpoints.peb_createBg, {
+                method: 'POST',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            const r = await checkAuth(res)
+            return await r
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    getBase64 = async (token: any, body: FormData) => {
+        try {
+            let res = await fetch(endpoints.file2b64, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${token}`
+                },
+                body
+            })
+            const r = await checkAuth(res)
+            return await r
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     auth = async (body: {password: string, phone: string}) => {
         try {
@@ -57,7 +123,8 @@ class MainApi {
                 headers,
                 
             })
-            return await res?.json()
+            const r = await checkAuth(res)
+            return await r
         } catch(err) {
             console.log(err)
         }
@@ -86,7 +153,8 @@ class MainApi {
                     'Authorization': `Token ${token}`
                 },
             })
-            return await res?.json()
+            const r = await checkAuth(res)
+            return await r
         } catch(err) {
             console.log(err)
         }
@@ -102,71 +170,70 @@ class MainApi {
                     'Authorization': `Token ${token}`
                 },
             })
-            return await res?.json()
+            const r = await checkAuth(res)
+            return await r
         } catch(err) {
             console.log(err)
         }
     }
 
 
-    peb_credits = async (token: any) => {
+    getPlans = async (
+        token: any,
+        {
+            limit, 
+            offset
+        }: 
+        {
+            limit: 10, 
+            offset: 0
+        } = 
+        {
+            limit: 10, 
+            offset: 0
+        }
+    ) => {
         try {
-            let res = await fetch(endpoints.peb_credits, {
+            let res = await fetch(endpoints.tarif + `?limit=${limit}&offset=${offset}`, {
                 method: 'GET',
                 headers: {
                     ...headers,
                     'Authorization': `Token ${token}`
                 },
             })
-            return await res?.json()
+            const r = await checkAuth(res)
+            return await r
         } catch(err) {
             console.log(err)
         }
     }
 
 
-    peb_removeBg = async (token:any, body: {image: string}) => {
+    getCards = async (
+        token: any,
+        {
+            limit, 
+            offset
+        }: 
+        {
+            limit: 10, 
+            offset: 0
+        } = 
+        {
+            limit: 10, 
+            offset: 0
+        }
+    ) => {
         try {
-            let res = await fetch(endpoints.peb_removeBg, {
-                method: 'POST',
+            let res = await fetch(endpoints.cards + `?limit=${limit}&offset=${offset}`, {
+                method: 'GET',
                 headers: {
                     ...headers,
-                    'Accept': 'application/json',
-                    'Authorization': `Token ${token}`
-                },
-                body: JSON.stringify(body)
-            })
-            return await res?.json()
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
-    peb_createBg = async (token: any) => {
-        try {
-            let res = await fetch(endpoints.peb_createBg, {
-                method: 'POST',
-                headers: {
-                    ...headers,
                     'Authorization': `Token ${token}`
                 },
             })
-            return await res?.json()
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
-    getBase64 = async (token: any, body: FormData) => {
-        try {
-            let res = await fetch(endpoints.file2b64, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Token ${token}`
-                },
-                body
-            })
-            return await res?.json()
+            const r = await checkAuth(res)
+            return await r
         } catch(err) {
             console.log(err)
         }

@@ -83,6 +83,7 @@
                     font-size: 14px;
                     line-height: 18px;
                     margin-bottom: 10px;
+                    // font-weight: 400;
 
                     // &:last-child {
                     //     margin-bottom: 0;
@@ -97,6 +98,11 @@
                         font-size: 14px;
                         line-height: 17px;
                     }
+                }
+
+                .item.over {
+                    text-decoration: line-through;
+                    opacity: .6;
                 }
             }
         }

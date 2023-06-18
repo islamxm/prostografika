@@ -1,7 +1,9 @@
 import styles from './Card.module.scss';
 import {motion} from 'framer-motion';
 
-const Card = () => {
+const Card = (props: any) => {
+
+
 
     return (
         <div
@@ -10,6 +12,9 @@ const Card = () => {
                 <div className={styles.item}>
                     
                 </div>
+            </div>
+            <div className={styles.body}>
+                <img src={props?.svg} alt="" />
             </div>
         </div>
     )

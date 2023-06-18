@@ -3,9 +3,9 @@
     border-radius: 14px;
     overflow: hidden;
     background-color: var(--light_violet);
-    background-image: url('../../../public/assets/img/logo.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    // background-image: url('../../../public/assets/img/logo.svg');
+    // background-repeat: no-repeat;
+    // background-position: center;
     position: relative;
 
     .action {
@@ -13,5 +13,17 @@
         top: 0;
         right: 0;
         padding: 10px;
+    }
+
+    .body {
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: flex;
+        }
     }
 }

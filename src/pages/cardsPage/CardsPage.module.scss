@@ -2,5 +2,15 @@
 
     .body {
         padding: 20px 0;
+        padding-bottom: 80px;
     }
+    
+}
+
+.action {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 45px;
 }
