@@ -20,6 +20,14 @@ const CardsPage = () => {
     const [list, setList] = useState<any[]>([])
     
 
+    const getCards = () => {
+        if(token) {
+         
+            service.getCards(token).then(res => {
+                setList(res?.results)
+            })
+        }
+    }
 
 
     useEffect(() => {
@@ -47,7 +55,7 @@ const CardsPage = () => {
                             <Row gutter={[15,15]}>
                                 {
                                     list?.map((i, index) => (
-                                        <Col span={12}><Card {...i}/></Col>
+                                        <Col span={12}><Card {...i} onUpdate={getCards}/></Col>
                                     ))
                                 }
                             </Row>

@@ -41,7 +41,14 @@ class MainApi {
         }
     }
 
-    peb_createBg = async (token: any) => {
+    peb_createBg = async (token: any, body: {
+        images: string[],
+        description?: string,
+        style_image?: string,
+        height?: number,
+        width?: number,
+        negative?: string
+    }) => {
         try {
             let res = await fetch(endpoints.peb_createBg, {
                 method: 'POST',
@@ -49,6 +56,7 @@ class MainApi {
                     ...headers,
                     'Authorization': `Token ${token}`
                 },
+                body:JSON.stringify(body)
             })
             const r = await checkAuth(res)
             return await r
@@ -234,6 +242,22 @@ class MainApi {
             })
             const r = await checkAuth(res)
             return await r
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    deleteCard = async (token: any, id: string) => {
+        try {
+            let res = await fetch(endpoints.cards + `${id}/`, {
+                method: 'DELETE',
+                headers: {
+                    ...headers,
+                    'Authorization': `Token ${token}`
+                },
+            })
+            const r = await checkAuth(res)
+            return await r;
         } catch(err) {
             console.log(err)
         }

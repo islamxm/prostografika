@@ -5,7 +5,7 @@ import Button from '../../../../components/Button/Button';
 import IconButton from '../../../../IconButton/IconButton';
 import {BiEraser} from 'react-icons/bi';
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
-import { main_updateLoading } from '../../../../store/slices/mainSlice/mainSlice';
+import { main_updateLoading, main_updateCurrentCanvas } from '../../../../store/slices/mainSlice/mainSlice';
 import MainApi from '../../../../service/MainApi';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
 import { fabric } from 'fabric';
@@ -115,7 +115,7 @@ const EditField = () => {
         if(canvas) {
             const link = document.createElement('a');
             link.href = canvas.toDataURL()
-            // link.setAttribute('download', canvas.toDataURL())
+
             link.download = 'test.png'
             link.click()
         }
@@ -126,6 +126,16 @@ const EditField = () => {
         setBgRemoved('')
         setUploadedFile('')
         setCanvas(null)
+    }
+
+    const onNext = () => {
+        if(canvas) {
+            const canvasJson = canvas?.toJSON()
+            
+
+            dispatch(main_updateCurrentCanvas(canvasJson))
+            navigate('/personal_generation')
+        }
     }
 
 
@@ -186,7 +196,7 @@ const EditField = () => {
                                         <Button
                                             fill
                                             text='Продолжить'
-                                            onClick={() => navigate('/templates')}
+                                            onClick={onNext}
                                             />
                                     </div>
                                     <div className={styles.item}>

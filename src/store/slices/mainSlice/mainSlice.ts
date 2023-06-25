@@ -11,7 +11,8 @@ const mainSlice = createSlice({
         main_menuClose: state => {state.isMenuOpen = false},
         main_menuOpen: state  => {state.isMenuOpen = true},
         main_updateLoading: (state, action) => {state.isLoading = action.payload},
-        main_updateMarketId: (state, action) => {state.marketId = action.payload}
+        main_updateMarketId: (state, action) => {state.marketId = action.payload},
+        main_updateCurrentCanvas: (state, action) => {state.currentCanvas = action.payload}
     }
 });
 
@@ -25,6 +26,7 @@ export const {
     main_menuClose,
     main_menuOpen,
     main_updateLoading,
-    main_updateMarketId
+    main_updateMarketId,
+    main_updateCurrentCanvas
 } = actions
 
