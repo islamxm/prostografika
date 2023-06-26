@@ -38,9 +38,10 @@ const PersonalGenPage = () => {
         if(currentCanvas) {
             console.log(currentCanvas?.objects[0]?.src)
             setSourcePrev(currentCanvas?.objects[0]?.src)
-        } else {
-            navigate('/format')
-        }
+        } 
+        // else {
+        //     navigate('/format')
+        // }
         
     }, [currentCanvas, navigate])
 
@@ -71,35 +72,36 @@ const PersonalGenPage = () => {
     }
 
 
-    const createBg = () => {
+    const createBg = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(token) {
             const data = new FormData()
-            const file = dataURLtoFile(currentCanvas?.objects[0]?.src, 'test.png')
-            data.append('file', file)
-            service.getBase64(token, data).then(res => {
-                if(res?.conv_file) {
-                    service.peb_createBg(token, {
-                        images: [`data:image/png;base64,${res?.conv_file}`],
-                        // style_image: selectedStyle?.source,
-                        width: 510,
-                        height: 510,
-                        description: 'bottle on the table',
-                        negative: 'red, blue'
-                    }).then(res => {
-                        console.log(res)
-                    })
-                }
-            })
-            // service.peb_createBg(token, {
-            //     images: [currentCanvas?.objects[0]?.src?.split(',')[1]],
-            //     style_image: selectedStyle?.source,
-            //     width: 510,
-            //     height: 510,
-            //     description: 'bottle on the table',
-            //     negative: 'red, blue'
-            // }).then(res => {
-            //     console.log(res)
-            // })
+            //const file = dataURLtoFile(currentCanvas?.objects[0]?.src, 'test.png')
+            if(e.target.files !== null) {
+                const file = e.target.files[0]
+                data.append('file', file)
+                service.getBase64(token, data).then(res => {
+                    if(res?.conv_file) {
+                        service.peb_removeBg(token, {image: res?.conv_file}).then(res => {
+                            // console.log(res)
+                            console.log(res?.data)
+                            if(res?.data) {
+                                service.peb_createBg(token, {
+                                    images: [res?.data],
+                                    // style_image: selectedStyle?.source,
+                                    width: 510,
+                                    height: 510,
+                                    description: 'bottle on the table',
+                                    negative: 'red, blue'
+                                }).then(res => {
+                                    console.log(res)
+                                })
+                            }
+
+                            
+                        })
+                    }
+                })
+            }
         }
     }
 
@@ -118,10 +120,12 @@ const PersonalGenPage = () => {
                             <Col span={24}>
                                 <div className={styles.part}>
                                     <div className={styles.source}>
-                                        {/* <canvas id='test-canvas'></canvas> */}
-                                        {
+                                        
+                                        {/* {
                                             sourcePrev && <img src={sourcePrev} alt="" />
-                                        }
+                                        } */}
+                                        <input onChange={createBg} type="file" accept='.png, .jpg' id='test-test'/>
+                                        {/* <label htmlFor="test-test"></label> */}
                                     </div>
                                 </div>
                             </Col>
@@ -182,7 +186,7 @@ const PersonalGenPage = () => {
             </motion.div>
             <div className={styles.action}>
                 <Button
-                    onClick={createBg}
+                    // onClick={createBg}
                     text='Создать'
                     fill
                     />
