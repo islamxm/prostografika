@@ -1,8 +1,8 @@
+import { useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
 import { CgClose } from 'react-icons/cg';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
 import IconButton from '../../IconButton/IconButton';
-import MainApi from '../../service/MainApi';
 import styles from './Card.module.scss';
 
 const service = new MainApi;

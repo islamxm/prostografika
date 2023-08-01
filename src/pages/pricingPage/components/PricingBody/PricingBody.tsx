@@ -1,9 +1,9 @@
-import { useEffect,useState } from 'react';
+import { useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import { useEffect, useState } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { useAppSelector } from '../../../../hooks/reduxHooks';
-import MainApi from '../../../../service/MainApi';
 import PricingCard from '../PricingCard/PricingCard';
 import { IPricingCard } from '../PricingCard/types';
 import styles from './PricingBody.module.scss';
@@ -74,14 +74,14 @@ const PricingBody = ({
   onSelectPlan,
   active
 }: {
-    onSelectPlan: (...args: any[]) => any,
-    active?: string
+  onSelectPlan: (...args: any[]) => any,
+  active?: string
 }) => {
   const { token } = useAppSelector(s => s.mainReducer);
   const [list, setList] = useState<any[]>([]);
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       service.getPlans(token).then(res => {
         setList(res?.results);
         console.log(Object.entries(res?.results[0])?.map(i => i[1]));
@@ -103,7 +103,7 @@ const PricingBody = ({
         {
           list?.map((item, index) => (
             <SwiperSlide className={styles.slide} key={index}>
-              <PricingCard {...item} planLabel={item?.tariff_label} name='plan' checked={active === item.id} onSelectPlan={onSelectPlan}/>
+              <PricingCard {...item} planLabel={item?.tariff_label} name='plan' checked={active === item.id} onSelectPlan={onSelectPlan} />
             </SwiperSlide>
           ))
         }

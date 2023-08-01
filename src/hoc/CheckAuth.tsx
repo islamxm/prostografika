@@ -1,22 +1,21 @@
+import { useAppSelector } from "@hooks/reduxHooks";
 import { Navigate } from "react-router-dom";
-
-import { useAppSelector } from "../hooks/reduxHooks";
 
 const CheckAuth = ({
   children
 }: {
-    children?: React.ReactNode
+  children?: React.ReactNode
 }) => {
   const { mainReducer: token } = useAppSelector(s => s);
 
 
 
 
-  if(token) {
+  if (token) {
     return <>{children}</>;
   }
 
-  return <Navigate to={'/auth'}/>;
+  return <Navigate to={'/auth'} />;
 
 };
 

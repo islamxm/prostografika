@@ -1,10 +1,10 @@
-import { Col,Row } from 'antd';
-import { motion, useAnimate } from 'framer-motion';
+import Button from '@components/Button/Button';
+import Headline from '@components/Headline/Headline';
+import pageEnterExitAnim from '@utils/pageEnterExitAnim';
+import { Col, Row } from 'antd';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../components/Button/Button';
-import Headline from '../../components/Headline/Headline';
-import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import GenCard from './compoents/GenCard/GenCard';
 import styles from './GensPage.module.scss';
 
@@ -21,11 +21,11 @@ const GensPage = () => {
       />
       <div className={styles.body}>
         <div className={styles.list}>
-          <Row gutter={[15,15]}>
-            <Col span={12}><GenCard/></Col>
-            <Col span={12}><GenCard/></Col>
-            <Col span={12}><GenCard/></Col>
-            <Col span={12}><GenCard/></Col>
+          <Row gutter={[15, 15]}>
+            <Col span={12}><GenCard /></Col>
+            <Col span={12}><GenCard /></Col>
+            <Col span={12}><GenCard /></Col>
+            <Col span={12}><GenCard /></Col>
           </Row>
         </div>
         <div className={styles.action}>

@@ -1,16 +1,13 @@
+import Button from '@components/Button/Button';
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import { main_updateCurrentCanvas, main_updateLoading } from '@store/slices/mainSlice/mainSlice';
 import { fabric } from 'fabric';
 import { ICanvasOptions, StaticCanvas } from 'fabric/fabric-impl';
-import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
+import { useFabricJSEditor } from 'fabricjs-react';
 import { useEffect, useRef, useState } from 'react';
-import { BiEraser } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../../../components/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks';
-import IconButton from '../../../../IconButton/IconButton';
-import MainApi from '../../../../service/MainApi';
-import { main_updateCurrentCanvas, main_updateLoading } from '../../../../store/slices/mainSlice/mainSlice';
-import testImg from '../../../../utils/testImg';
 import UploadField from '../UploadField/UploadField';
 import styles from './EditField.module.scss';
 

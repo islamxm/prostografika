@@ -141,14 +141,7 @@ class MainApi {
 
   getMarkets = async (
     token: any,
-    {
-      limit = 10,
-      offset = 0
-    }:
-      {
-        limit: 10,
-        offset: 0
-      }) => {
+    { limit, offset }: { limit: number, offset: number } = { limit: 10, offset: 0 }) => {
     try {
       const res = await fetch(endpoints.markets + `?limit=${limit}&offset=${offset}`, {
         method: 'GET',
@@ -185,13 +178,13 @@ class MainApi {
   getPlans = async (
     token: any,
     {
-      limit = 10,
-      offset = 0
+      limit,
+      offset
     }:
       {
         limit: 10,
         offset: 0
-      }
+      } = { limit: 10, offset: 0 }
   ) => {
     try {
       const res = await fetch(endpoints.tarif + `?limit=${limit}&offset=${offset}`, {
@@ -218,7 +211,7 @@ class MainApi {
       {
         limit: 10,
         offset: 0
-      }
+      } = { limit: 10, offset: 0 }
   ) => {
     try {
       const res = await fetch(endpoints.cards + `?limit=${limit}&offset=${offset}`, {

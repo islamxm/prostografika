@@ -1,15 +1,15 @@
-import { Col,Row } from 'antd';
+import Button from '@components/Button/Button';
+import Card from '@components/Card/Card';
+import Headline from '@components/Headline/Headline';
+import { useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import pageEnterExitAnim from '@utils/pageEnterExitAnim';
+import { Col, Row } from 'antd';
 import { motion } from 'framer-motion';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
-import Headline from '../../components/Headline/Headline';
-import { useAppSelector } from '../../hooks/reduxHooks';
-import MainApi from '../../service/MainApi';
 import SkCards from '../../skeletons/SkCards/SkCards';
-import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import styles from './CardsPage.module.scss';
 
 const service = new MainApi();
@@ -22,7 +22,7 @@ const CardsPage = () => {
 
 
   const getCards = () => {
-    if(token) {
+    if (token) {
 
       service.getCards(token).then(res => {
         setList(res?.results);
@@ -32,7 +32,7 @@ const CardsPage = () => {
 
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       setLoaded(false);
       service.getCards(token).then(res => {
         setList(res?.results);
@@ -53,14 +53,14 @@ const CardsPage = () => {
         <div className={styles.body}>
           {
             loaded ? (
-              <Row gutter={[15,15]}>
+              <Row gutter={[15, 15]}>
                 {
                   list?.map((i, index) => (
-                    <Col span={12}><Card {...i} onUpdate={getCards}/></Col>
+                    <Col key={index} span={12}><Card {...i} onUpdate={getCards} /></Col>
                   ))
                 }
               </Row>
-            ) : <SkCards/>
+            ) : <SkCards />
           }
 
         </div>

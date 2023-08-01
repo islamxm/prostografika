@@ -1,10 +1,10 @@
+import { useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { MoonLoader } from 'react-spinners';
 
 import getBase64 from '../../../../helpers/getBase64';
-import { useAppSelector } from '../../../../hooks/reduxHooks';
-import MainApi from '../../../../service/MainApi';
 import { IUploadField } from '../../types';
 import styles from './UploadField.module.scss';
 

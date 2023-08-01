@@ -1,19 +1,19 @@
-import { Col,Row } from 'antd';
+import Headline from '@components/Headline/Headline';
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import { main_deleteToken, main_updateLoading } from '@store/slices/mainSlice/mainSlice';
+import { Col, Row } from 'antd';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Cookies } from 'typescript-cookie';
 
-import { useAppDispatch,useAppSelector } from '../../hooks/reduxHooks';
-import MainApi from '../../service/MainApi';
-import { main_deleteToken, main_updateLoading } from '../../store/slices/mainSlice/mainSlice';
-import Headline from '../Headline/Headline';
 import Item from './components/Item/Item';
 import styles from './Sidebar.module.scss';
 
 
 const service = new MainApi();
 
-const Sidebar:FC = () => {
+const Sidebar: FC = () => {
   const { isMenuOpen } = useAppSelector(s => s.mainReducer);
   const { token } = useAppSelector(s => s.mainReducer);
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ const Sidebar:FC = () => {
 
 
   const getPebCredits = () => {
-    if(token) {
+    if (token) {
       service.peb_credits(token).then(res => {
         console.log(res);
         alert(`Баланс Pebblely API: ${res?.credits}`);
@@ -46,7 +46,7 @@ const Sidebar:FC = () => {
           title='Личный кабинет'
         />
         <div className={styles.body}>
-          <Row gutter={[12,12]}>
+          <Row gutter={[12, 12]}>
             <Col span={24}>
               <Item
                 itemType={1}

@@ -1,10 +1,10 @@
+import Button from '@components/Button/Button';
+import Headline from '@components/Headline/Headline';
+import SubmitPromo from '@components/SubmitPromo/SubmitPromo';
+import pageEnterExitAnim from '@utils/pageEnterExitAnim';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-import Button from '../../components/Button/Button';
-import Headline from '../../components/Headline/Headline';
-import SubmitPromo from '../../components/SubmitPromo/SubmitPromo';
-import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import PricingBody from './components/PricingBody/PricingBody';
 import styles from './PricingPage.module.scss';
 
@@ -24,8 +24,8 @@ const PricingPage = () => {
           title='Тарифы'
           description='У вас закончились бесплатные загрузки. Заберите свой промокод в нашем телеграмм канале. '
         />
-        <PricingBody active={selectedPlan} onSelectPlan={setSelectedPlan}/>
-        <SubmitPromo/>
+        <PricingBody active={selectedPlan} onSelectPlan={setSelectedPlan} />
+        <SubmitPromo />
 
       </motion.div>
       <div className={styles.action}>

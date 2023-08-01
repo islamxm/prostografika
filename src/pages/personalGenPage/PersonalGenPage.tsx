@@ -1,17 +1,16 @@
-import { Col,Row } from 'antd';
+import Button from '@components/Button/Button';
+import Headline from '@components/Headline/Headline';
+import TextArea from '@components/TextArea/TextArea';
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import { main_updateLoading } from '@store/slices/mainSlice/mainSlice';
+import pageEnterExitAnim from '@utils/pageEnterExitAnim';
+import { Col, Row } from 'antd';
 import { fabric } from 'fabric';
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../components/Button/Button';
-import Headline from '../../components/Headline/Headline';
-import TextArea from '../../components/TextArea/TextArea';
-import { useAppDispatch,useAppSelector } from '../../hooks/reduxHooks';
-import MainApi from '../../service/MainApi';
-import { main_updateLoading } from '../../store/slices/mainSlice/mainSlice';
-import dataURLtoFile from '../../utils/dataUrlToFile';
-import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import styles from './PersonalGenPage.module.scss';
 
 const service = new MainApi();
@@ -24,7 +23,7 @@ const PersonalGenPage = () => {
   const [canvas, setCanvas] = useState<any>(null);
   const [sourcePrev, setSourcePrev] = useState('');
   const [styleImages, setStyleImages] = useState<string[]>([]);
-  const [selectedStyle, setSelectedStyle] = useState<{source: string, index: number} | null>(null);
+  const [selectedStyle, setSelectedStyle] = useState<{ source: string, index: number } | null>(null);
 
 
   const initCanvas = () => {
@@ -37,7 +36,7 @@ const PersonalGenPage = () => {
   };
 
   useEffect(() => {
-    if(currentCanvas) {
+    if (currentCanvas) {
       console.log(currentCanvas?.objects[0]?.src);
       setSourcePrev(currentCanvas?.objects[0]?.src);
     }
@@ -55,8 +54,8 @@ const PersonalGenPage = () => {
   //     }
   // }, [canvas])
 
-  const onAddStyleImage = (e:React.ChangeEvent<HTMLInputElement>) => {
-    if(e.target.files !== null) {
+  const onAddStyleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
       const file = e.target.files[0];
 
       dispatch(main_updateLoading(true));
@@ -64,7 +63,7 @@ const PersonalGenPage = () => {
       body.append('file', file);
       service.getBase64(token, body).then(res => {
         console.log(res);
-        if(res?.conv_file) {
+        if (res?.conv_file) {
           setStyleImages(s => [...s, `data:image/png;base64,${res?.conv_file}`]);
         }
       }).finally(() => {
@@ -75,18 +74,18 @@ const PersonalGenPage = () => {
 
 
   const createBg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(token) {
+    if (token) {
       const data = new FormData();
       //const file = dataURLtoFile(currentCanvas?.objects[0]?.src, 'test.png')
-      if(e.target.files !== null) {
+      if (e.target.files !== null) {
         const file = e.target.files[0];
         data.append('file', file);
         service.getBase64(token, data).then(res => {
-          if(res?.conv_file) {
+          if (res?.conv_file) {
             service.peb_removeBg(token, { image: res?.conv_file }).then(res => {
               // console.log(res)
               console.log(res?.data);
-              if(res?.data) {
+              if (res?.data) {
                 service.peb_createBg(token, {
                   images: [res?.data],
                   // style_image: selectedStyle?.source,
@@ -118,7 +117,7 @@ const PersonalGenPage = () => {
           generationBalance={true}
         />
         <div className={styles.body}>
-          <Row gutter={[25,25]}>
+          <Row gutter={[25, 25]}>
             <Col span={24}>
               <div className={styles.part}>
                 <div className={styles.source}>
@@ -126,7 +125,7 @@ const PersonalGenPage = () => {
                   {/* {
                                             sourcePrev && <img src={sourcePrev} alt="" />
                                         } */}
-                  <input onChange={createBg} type="file" accept='.png, .jpg' id='test-test'/>
+                  <input onChange={createBg} type="file" accept='.png, .jpg' id='test-test' />
                   {/* <label htmlFor="test-test"></label> */}
                 </div>
               </div>
@@ -157,13 +156,13 @@ const PersonalGenPage = () => {
               <div className={styles.part}>
                 <div className={styles.head}>Выберите понравившиеся изображения, стили</div>
                 <div className={styles.list}>
-                  <Row gutter={[10,10]}>
+                  <Row gutter={[10, 10]}>
                     <Col span={8}>
                       <div onClick={() => setSelectedStyle(null)} className={styles.add}>нет</div>
                     </Col>
                     <Col span={8}>
                       <div className={styles.add}>
-                        <input onChange={onAddStyleImage} id='add-style-image' type="file" accept='.png, .jpg'/>
+                        <input onChange={onAddStyleImage} id='add-style-image' type="file" accept='.png, .jpg' />
                         <label htmlFor="add-style-image">Добавить свое</label>
                       </div>
                     </Col>

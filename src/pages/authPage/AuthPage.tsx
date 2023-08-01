@@ -1,20 +1,20 @@
+import Checkbox from '@components/Checkbox/Checkbox';
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
+import MainApi from '@service/MainApi';
+import { main_updateToken } from '@store/slices/mainSlice/mainSlice';
+import pageEnterExitAnim from '@utils/pageEnterExitAnim';
 import { motion } from 'framer-motion';
 import { ChangeEvent, FC, useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Cookies } from 'typescript-cookie';
 
-import Checkbox from '../../components/Checkbox/Checkbox';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import MainApi from '../../service/MainApi';
-import { main_updateToken } from '../../store/slices/mainSlice/mainSlice';
-import pageEnterExitAnim from '../../utils/pageEnterExitAnim';
 import styles from './AuthPage.module.scss';
 import Form from './components/Form/Form';
 
 const apiMain = new MainApi();
 
-const AuthPage:FC = () => {
+const AuthPage: FC = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector(s => s.mainReducer);
   const nav = useNavigate();
@@ -30,13 +30,13 @@ const AuthPage:FC = () => {
 
 
 
-  const onSubmit = (body: {password: string, phone: string}) => {
-    if(acceptPolicy) {
+  const onSubmit = (body: { password: string, phone: string }) => {
+    if (acceptPolicy) {
       setLoginLoad(true);
       apiMain.auth(body).then(res => {
-        if(res?.auth_token) {
+        if (res?.auth_token) {
           dispatch(main_updateToken(res?.auth_token));
-          if(saveMe) {
+          if (saveMe) {
             Cookies.set('prostografika-token', res?.auth_token);
           }
           nav('/format');
@@ -52,7 +52,7 @@ const AuthPage:FC = () => {
     }
   };
 
-  if(token) return null;
+  if (token) return null;
   return (
     <motion.div
       {...pageEnterExitAnim}
@@ -73,8 +73,8 @@ const AuthPage:FC = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) => setAcceptPolicy(e.target.checked)}
           body={
             <>
-                            Я согласен с <a href="#">Условиями обслуживания</a>
-                            и <a href="#">Политикой конфиденциальности</a>
+              Я согласен с <a href="#">Условиями обслуживания</a>
+              и <a href="#">Политикой конфиденциальности</a>
             </>
           }
         />

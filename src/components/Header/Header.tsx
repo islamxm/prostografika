@@ -1,15 +1,14 @@
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
+import { main_menuClose, main_menuOpen } from '@store/slices/mainSlice/mainSlice';
 import { BsChevronLeft } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { main_menuClose, main_menuOpen } from '../../store/slices/mainSlice/mainSlice';
 import styles from './Header.module.scss';
 
 const Header = ({
   isActive
 }: {
-    isActive?: boolean
+  isActive?: boolean
 }) => {
   const { mainReducer: { isMenuOpen } } = useAppSelector(s => s);
   const dispatch = useAppDispatch();
@@ -27,10 +26,10 @@ const Header = ({
     <div className={`${styles.wrapper} ${isActive ? styles.active : ''}`}>
       <button onClick={() => nav(-1)} className={`${styles.back} ${isMenuOpen ? styles.hide : ''}`}>
         <span className={styles.icon}>
-          <BsChevronLeft/>
+          <BsChevronLeft />
         </span>
         <span className={styles.label}>
-                    Назад
+          Назад
         </span>
       </button>
       <button
