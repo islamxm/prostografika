@@ -26,7 +26,7 @@
             background-color: #fff;
 
             .el {
-                color:#5F5F5F;
+                color: #5F5F5F;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -39,6 +39,7 @@
 
         .body {
             font-weight: 700;
+
             a {
                 text-decoration: underline;
                 color: #fff;
@@ -46,7 +47,7 @@
         }
     }
 
-    input:checked ~ .label {
+    input:checked~.label {
         .icon {
             .el {
                 transform: scale(1);

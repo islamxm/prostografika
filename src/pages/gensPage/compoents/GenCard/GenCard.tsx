@@ -4,11 +4,11 @@ import styles from './GenCard.module.scss';
 
 const GenCard = () => {
 
-    return (
-        <div className={styles.wrapper}>
+  return (
+    <div className={styles.wrapper}>
 
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default GenCard;

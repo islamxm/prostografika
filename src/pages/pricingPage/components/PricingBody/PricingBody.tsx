@@ -1,11 +1,12 @@
-import styles from './PricingBody.module.scss';
-import PricingCard from '../PricingCard/PricingCard';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Pagination} from 'swiper';
-import { IPricingCard } from '../PricingCard/types';
-import {useState, useEffect} from 'react';
+import { useEffect,useState } from 'react';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { useAppSelector } from '../../../../hooks/reduxHooks';
 import MainApi from '../../../../service/MainApi';
+import PricingCard from '../PricingCard/PricingCard';
+import { IPricingCard } from '../PricingCard/types';
+import styles from './PricingBody.module.scss';
 // const list:IPricingCard[] = [
 //     {
 //         id: '1',
@@ -67,49 +68,49 @@ import MainApi from '../../../../service/MainApi';
 //         ]
 //     }
 // ]
-const service = new MainApi()
+const service = new MainApi();
 
 const PricingBody = ({
-    onSelectPlan,
-    active
+  onSelectPlan,
+  active
 }: {
     onSelectPlan: (...args: any[]) => any,
     active?: string
 }) => {
-    const {token} = useAppSelector(s => s.mainReducer)
-    const [list, setList] = useState<any[]>([])
+  const { token } = useAppSelector(s => s.mainReducer);
+  const [list, setList] = useState<any[]>([]);
 
-    useEffect(() => {
-        if(token) {
-            service.getPlans(token).then(res => {
-                setList(res?.results)
-                console.log(Object.entries(res?.results[0])?.map(i => i[1]))
-            })
+  useEffect(() => {
+    if(token) {
+      service.getPlans(token).then(res => {
+        setList(res?.results);
+        console.log(Object.entries(res?.results[0])?.map(i => i[1]));
+      });
+    }
+  }, [token]);
+
+
+
+
+  return (
+    <div className={styles.wrapper}>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={12}
+        initialSlide={1}
+        className={styles.slider}
+      >
+        {
+          list?.map((item, index) => (
+            <SwiperSlide className={styles.slide} key={index}>
+              <PricingCard {...item} planLabel={item?.tariff_label} name='plan' checked={active === item.id} onSelectPlan={onSelectPlan}/>
+            </SwiperSlide>
+          ))
         }
-    }, [token])
-    
-    
-
-
-    return (
-        <div className={styles.wrapper}>
-            <Swiper
-                slidesPerView={1}
-                spaceBetween={12}
-                initialSlide={1}
-                className={styles.slider}
-                >
-                {
-                    list?.map((item, index) => (
-                        <SwiperSlide className={styles.slide} key={index}>
-                            <PricingCard {...item} planLabel={item?.tariff_label} name='plan' checked={active === item.id} onSelectPlan={onSelectPlan}/>
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
-        </div>
-    )
-}
+      </Swiper>
+    </div>
+  );
+};
 
 
 export default PricingBody;

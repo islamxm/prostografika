@@ -5,7 +5,7 @@ export interface IIconButton extends HTMLProps<HTMLButtonElement> {
     icon: React.ReactNode,
     label?: string,
     type?: 'button' | 'submit' | 'reset'
-    
+
 }
 
-export type iconButtonVariants = 'default' 
+export type iconButtonVariants = 'default'

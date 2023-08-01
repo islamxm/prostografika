@@ -1,5 +1,8 @@
 .wrapper.load {
-    .text, .before, .after {
+
+    .text,
+    .before,
+    .after {
         opacity: 0;
     }
 }
@@ -7,7 +10,9 @@
 .wrapper {
     position: relative;
 
-    .before, .after, .text {
+    .before,
+    .after,
+    .text {
         transition: all .3s ease;
     }
 
@@ -47,7 +52,7 @@
         justify-content: center;
         z-index: 10;
     }
-    
+
     .icon {
         display: none;
         line-height: 100%;
@@ -87,7 +92,9 @@
     border-radius: 16px;
     transition: all .2s ease;
 
-    .text, .before, .after {
+    .text,
+    .before,
+    .after {
         display: none;
     }
 
@@ -123,4 +130,3 @@
 .wrapper.var_light_violet {
     background-color: var(--light_violet);
 }
-

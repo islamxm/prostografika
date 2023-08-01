@@ -1,5 +1,5 @@
 export interface IPricingCard extends React.HTMLProps<HTMLInputElement> {
-    
+
     price?: number,
     // descrList?: {label: string, lineover?: boolean}[],
     onSelectPlan?: (...args: any[]) => any,
