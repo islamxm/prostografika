@@ -11,7 +11,7 @@ const Checkbox:FC<ICheckbox> = (props) => {
       <input {...props} type="checkbox" />
       <label className={styles.label} htmlFor={props?.id}>
         <div className={styles.icon}>
-          <div className={styles.el}><BsCheckLg/></div>
+          <div className={styles.el}><BsCheckLg /></div>
         </div>
         <div className={styles.body}>
           {props.body}

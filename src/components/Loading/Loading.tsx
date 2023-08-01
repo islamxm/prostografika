@@ -13,7 +13,7 @@ const Loading = () => {
       exit={{ opacity: 0 }}
       transition={{ ease: [0.65, 0, 0.35, 1], duration: .5 }}
       className={styles.wrapper}>
-      <MoonLoader color='#fff'/>
+      <MoonLoader color='#fff' />
     </motion.div>
   );
 };

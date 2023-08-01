@@ -15,22 +15,22 @@ const Item:FC<{link?: string, label?: string, itemType?: number, onClick?: (...a
 }) => {
 
 
-  if(itemType === 2) {
+  if (itemType === 2) {
     return (
       <a href={'/'} target={'_blank'} rel="noreferrer" className={`${styles.wrapper} ${isDanger ? styles.danger : ''}`}>
         <div className={styles.label}>{label}</div>
         <div className={styles.icon}>
-          <BsChevronRight/>
+          <BsChevronRight />
         </div>
       </a>
     );
   }
-  if(itemType === 1) {
+  if (itemType === 1) {
     return (
       <Link className={`${styles.wrapper} ${isDanger ? styles.danger : ''}`} to={link ? link : '/'}>
         <div className={styles.label}>{label}</div>
         <div className={styles.icon}>
-          <BsChevronRight/>
+          <BsChevronRight />
         </div>
       </Link>
     );
@@ -40,7 +40,7 @@ const Item:FC<{link?: string, label?: string, itemType?: number, onClick?: (...a
     <div className={`${styles.wrapper} ${isDanger ? styles.danger : ''}`} onClick={() => onClick && onClick()}>
       <div className={styles.label}>{label}</div>
       <div className={styles.icon}>
-        <BsChevronRight/>
+        <BsChevronRight />
       </div>
     </div>
   );

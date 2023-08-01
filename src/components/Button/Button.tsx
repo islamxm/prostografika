@@ -4,7 +4,7 @@ import { FC } from 'react';
 import styles from './Button.module.scss';
 import { buttonType, buttonVariants, buttonView } from './types';
 
-const Button:FC<buttonType> = (props) => {
+const Button: FC<buttonType> = (props) => {
 
   const {
     variant = 'violet',
@@ -16,11 +16,12 @@ const Button:FC<buttonType> = (props) => {
     fill,
     load,
     exText,
-    download
+    download,
+    ...buttonProps
   } = props;
 
   const switchVariant = (variant: buttonVariants) => {
-    switch(variant) {
+    switch (variant) {
       case 'violet':
         return styles.var_violet;
       case 'aqua':
@@ -31,7 +32,7 @@ const Button:FC<buttonType> = (props) => {
   };
 
   const switchView = (view: buttonView) => {
-    switch(view) {
+    switch (view) {
       case 'button':
         return styles.button_def;
       case 'icon':
@@ -41,7 +42,7 @@ const Button:FC<buttonType> = (props) => {
     }
   };
 
-  if(download) {
+  if (download) {
     return (
       <a
         href={download}
@@ -51,7 +52,7 @@ const Button:FC<buttonType> = (props) => {
         className={`${styles.wrapper} ${switchVariant(variant)} ${switchView(view)} ${fill ? styles.fill : ''} ${load ? styles.load : ''}`}
       >
         {
-          load && <div className={styles.load}><LoadingOutlined/></div>
+          load && <div className={styles.load}><LoadingOutlined /></div>
         }
         {
           icon && <div className={styles.icon}>{icon}</div>
@@ -84,12 +85,12 @@ const Button:FC<buttonType> = (props) => {
 
   return (
     <button
-      {...props}
+      {...buttonProps}
       type='button'
       className={`${styles.wrapper} ${switchVariant(variant)} ${switchView(view)} ${fill ? styles.fill : ''} ${load ? styles.load : ''}`}
     >
       {
-        load && <div className={styles.load}><LoadingOutlined/></div>
+        load && <div className={styles.load}><LoadingOutlined /></div>
       }
       {
         icon && <div className={styles.icon}>{icon}</div>

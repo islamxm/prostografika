@@ -30,7 +30,7 @@ const PricingCard:FC<IPricingCard> = (props) => {
     <div className={styles.wrapper}>
       <input {...props}  onChange={(e) => {
         onSelectPlan && onSelectPlan(id);
-      }} type="radio"/>
+      }} type="radio" />
       <label className={styles.in} htmlFor={id}>
         <div className={styles.head}>
           <div className={styles.title}>1 скачивания</div>
@@ -43,7 +43,7 @@ const PricingCard:FC<IPricingCard> = (props) => {
           </div>
 
           <div className={styles.icon}>
-            <div className={styles.el}><BsCheckLg/></div>
+            <div className={styles.el}><BsCheckLg /></div>
           </div>
         </div>
         <div className={styles.body}>

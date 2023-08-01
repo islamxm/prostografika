@@ -22,7 +22,7 @@ const SubmitPromo = () => {
           disabled={!value}
           view='icon'
           variant='aqua'
-          icon={<FaTelegramPlane size={28} color={'#fff'}/>}
+          icon={<FaTelegramPlane size={28} color={'#fff'} />}
         />
       </div>
     </div>

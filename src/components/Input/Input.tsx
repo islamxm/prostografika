@@ -11,14 +11,14 @@ const Input:FC<IInput> = (props) => {
 
   return (
     <div className={`${styles.wrapper} ${props?.type === 'password' ? styles.password : ''} ${error ? styles.error : ''}`}>
-      <input {...props} type={props?.type !== 'password' ? props?.type : (visible ? 'text' : 'password')}/>
+      <input {...props} type={props?.type !== 'password' ? props?.type : (visible ? 'text' : 'password')} />
       {
         props?.type === 'password' &&  (
           <button type='button' onClick={() => setVisible(s => !s)} className={styles.password_toggle}>
             {
               visible ? (
-                <AiFillEyeInvisible/>
-              ) : <AiFillEye/>
+                <AiFillEyeInvisible />
+              ) : <AiFillEye />
             }
           </button>
         )
