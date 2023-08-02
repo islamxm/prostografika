@@ -3,15 +3,12 @@ import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import MainApi from '@service/MainApi';
 import { main_updateCurrentCanvas, main_updateLoading } from '@store/slices/mainSlice/mainSlice';
 import { fabric } from 'fabric';
-import { ICanvasOptions, StaticCanvas } from 'fabric/fabric-impl';
-import { useFabricJSEditor } from 'fabricjs-react';
+import { Image } from 'fabric/fabric-impl';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import UploadField from '../UploadField/UploadField';
 import styles from './EditField.module.scss';
-
-type IC = ICanvasOptions & StaticCanvas
 
 const service = new MainApi();
 
@@ -21,11 +18,9 @@ const EditField = () => {
   const { token, marketId, selectedMarket } = useAppSelector(s => s.mainReducer);
   const [uploadedFile, setUploadedFile] = useState<string>('');
   const [bgRemoved, setBgRemoved] = useState<string>('');
-  const { editor, onReady } = useFabricJSEditor();
   const [ratioDiff, setRatioDiff] = useState(0);
   const [canvas, setCanvas] = useState<any | null>(null);
   const navigate = useNavigate();
-
 
   const onRemoveBg = () => {
     if (uploadedFile && token) {
@@ -41,24 +36,6 @@ const EditField = () => {
       }).finally(() => {
         dispatch(main_updateLoading(false));
       });
-
-
-      // service.peb_removeBg(token, {image: uploadedFile}).then(res => {
-      //     setBgRemoved(res?.data)
-      //     console.log(res)
-      //     fabric.Image.fromURL(`data:image/png;base64,${res?.data}`, (oImg) => {
-      //         editor?.canvas.add(oImg)
-      //     })
-      // })
-
-
-
-      // fabric.Image.fromURL(`data:image/png;base64,${testImg}`, (oImg) => {
-      //     // setBgRemoved(testImg)
-      //     // editor?.canvas.add(oImg)
-      //     canvas?.add(oImg)
-      //         // editor?.canvas.
-      // })
     }
   };
 
@@ -77,10 +54,9 @@ const EditField = () => {
     }
   }, [bgRemoved]);
 
-
   useEffect(() => {
     if (canvas && bgRemoved) {
-      fabric.Image.fromURL(`data:image/png;base64,${bgRemoved}`, (oImg: any) => {
+      fabric.Image.fromURL(`data:image/png;base64,${bgRemoved}`, (oImg: Image) => {
         canvas?.add(oImg);
         canvas.item(0).set({
           borderColor: '#56AEFF',
@@ -96,7 +72,6 @@ const EditField = () => {
     }
   }, [canvas, bgRemoved]);
 
-
   useEffect(() => {
     if (token && selectedMarket) {
       const x = selectedMarket.size_x;
@@ -104,8 +79,6 @@ const EditField = () => {
       setRatioDiff(Math.trunc(100 * (y - x) / x));
     }
   }, [token, selectedMarket]);
-
-
 
   const testDownload = () => {
     if (canvas) {
@@ -117,7 +90,6 @@ const EditField = () => {
     }
   };
 
-
   const onReset = () => {
     setBgRemoved('');
     setUploadedFile('');
@@ -128,12 +100,10 @@ const EditField = () => {
     if (canvas) {
       const canvasJson = canvas?.toJSON();
 
-
       dispatch(main_updateCurrentCanvas(canvasJson));
       navigate('/personal_generation');
     }
   };
-
 
   return (
     <div className={styles.wrapper}>
