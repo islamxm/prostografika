@@ -4,7 +4,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import styles from './PricingCard.module.scss';
 import { IPricingCard } from './types';
 
-const PricingCard:FC<IPricingCard> = (props) => {
+const PricingCard: FC<IPricingCard> = (props) => {
   const {
     price,
     onSelectPlan,
@@ -22,13 +22,14 @@ const PricingCard:FC<IPricingCard> = (props) => {
     save_in_resolution,
     seven_days_of_access_to_advertising,
     template_auto_update,
-    working_with_saved_images
+    working_with_saved_images,
+    ...inputProps
   } = props;
 
 
   return (
     <div className={styles.wrapper}>
-      <input {...props}  onChange={(e) => {
+      <input {...inputProps} onChange={(e) => {
         onSelectPlan && onSelectPlan(id);
       }} type="radio" />
       <label className={styles.in} htmlFor={id}>
@@ -58,51 +59,51 @@ const PricingCard:FC<IPricingCard> = (props) => {
                         } */}
             <li className={styles.item}>
               <span>1</span>
-                            Доступно {generation} генераций изображений
+              Доступно {generation} генераций изображений
             </li>
             <li className={styles.item}>
               <span>2</span>
-                            Генерация фона по {generation_templates} шаблонам
+              Генерация фона по {generation_templates} шаблонам
             </li>
             <li className={`${styles.item} ${!creating_infographics ? styles.over : ''}`}>
               <span>3</span>
-                            Создание инфографики
+              Создание инфографики
             </li>
             <li className={`${styles.item} ${!access_to_educational_materials ? styles.over : ''}`}>
               <span>4</span>
-                            Доступ к обучающим материалам
+              Доступ к обучающим материалам
             </li>
             <li className={styles.item}>
               <span>5</span>
-                            Сохранение в разрешении {save_in_resolution}
+              Сохранение в разрешении {save_in_resolution}
             </li>
             <li className={`${styles.item} ${!generation_templates ? styles.over : ''}`}>
               <span>6</span>
-                            Генерация фона по {generation_templates} шаблонам
+              Генерация фона по {generation_templates} шаблонам
             </li>
             <li className={`${styles.item} ${!generation_of_any_backgrounds ? styles.over : ''}`}>
               <span>7</span>
-                            Генерация ЛЮБЫХ фонов
+              Генерация ЛЮБЫХ фонов
             </li>
             <li className={`${styles.item} ${!working_with_saved_images ? styles.over : ''}`}>
               <span>8</span>
-                            Возможность работать с сохраненными изображениями
+              Возможность работать с сохраненными изображениями
             </li>
             <li className={`${styles.item} ${!seven_days_of_access_to_advertising ? styles.over : ''}`}>
               <span>9</span>
-                            7 дней бесплатного доступа к сервису по настройке рекламы
+              7 дней бесплатного доступа к сервису по настройке рекламы
             </li>
             <li className={`${styles.item} ${!authors_background_templates ? styles.over : ''}`}>
               <span>10</span>
-                            Авторские шаблоны фона
+              Авторские шаблоны фона
             </li>
             <li className={`${styles.item} ${!design_infographic_templates ? styles.over : ''}`}>
               <span>11</span>
-                            Дизайнерские шаблоны инфографики
+              Дизайнерские шаблоны инфографики
             </li>
             <li className={`${styles.item} ${!template_auto_update ? styles.over : ''}`}>
               <span>12</span>
-                            Автообновление шаблонов
+              Автообновление шаблонов
             </li>
           </ul>
 
