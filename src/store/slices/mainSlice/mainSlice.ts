@@ -1,7 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import MainApi from '@service/MainApi';
 
 import initState from '../../initState';
 
+const service = new MainApi();
+
+export const fetchMarkets = createAsyncThunk(
+  'main/fetchMarkets',
+  async (token: string, { dispatch }) => {
+    dispatch(main_updateLoading(true));
+    const response = await service.getMarkets(token);
+    return response.results;
+  }
+);
 
 const mainSlice = createSlice({
   name: 'main',
@@ -12,8 +23,17 @@ const mainSlice = createSlice({
     main_menuClose: state => { state.isMenuOpen = false; },
     main_menuOpen: state => { state.isMenuOpen = true; },
     main_updateLoading: (state, action) => { state.isLoading = action.payload; },
-    main_updateMarketId: (state, action) => { state.marketId = action.payload; },
+    main_updateMarketId: (state, action) => {
+      state.marketId = action.payload;
+      state.selectedMarket = state.markets.find((m) => m.id === action.payload) ?? null;
+    },
     main_updateCurrentCanvas: (state, action) => { state.currentCanvas = action.payload; }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchMarkets.fulfilled, (state, action) => {
+      state.markets = action.payload;
+      state.isLoading = false;
+    });
   }
 });
 
@@ -28,6 +48,6 @@ export const {
   main_menuOpen,
   main_updateLoading,
   main_updateMarketId,
-  main_updateCurrentCanvas
+  main_updateCurrentCanvas,
 } = actions;
 

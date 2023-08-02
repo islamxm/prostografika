@@ -4,12 +4,12 @@ import Sidebar from '@components/Sidebar/Sidebar';
 import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { useScroll } from '@react-hooks-library/core';
 import { main_menuClose } from '@store/slices/mainSlice/mainSlice';
+import { fetchMarkets } from '@store/slices/mainSlice/mainSlice';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import Div100vh from 'react-div-100vh';
 import { useLocation } from 'react-router-dom';
 
 import styles from './Wrapper.module.scss';
-
 
 const Wrapper: FC<{ children?: ReactNode }> = ({
   children
@@ -22,33 +22,26 @@ const Wrapper: FC<{ children?: ReactNode }> = ({
   const location = useLocation();
   const [headerActive, setHeaderActive] = useState<boolean>();
 
-
   useScroll(boxRef, ({ scrollY }) => {
     scrollY > 0 ? setHeaderActive(true) : setHeaderActive(false);
   });
-
 
   useEffect(() => {
     dispatch(main_menuClose());
   }, [location]);
 
-
-
-
-
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchMarkets(token as string));
+    }
+  }, [token]);
 
   return (
-
     <Div100vh ref={boxRef} className={styles.wrapper}>
-
       {isLoading && <Loading />}
-
       {(token && pathname !== '/') && <Header isActive={headerActive && !isMenuOpen} />}
-
       <Sidebar />
-
       {children}
-
     </Div100vh>
   );
 };

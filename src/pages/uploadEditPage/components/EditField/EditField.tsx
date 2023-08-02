@@ -18,7 +18,7 @@ const service = new MainApi();
 const EditField = () => {
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { token, marketId } = useAppSelector(s => s.mainReducer);
+  const { token, marketId, selectedMarket } = useAppSelector(s => s.mainReducer);
   const [uploadedFile, setUploadedFile] = useState<string>('');
   const [bgRemoved, setBgRemoved] = useState<string>('');
   const { editor, onReady } = useFabricJSEditor();
@@ -98,15 +98,12 @@ const EditField = () => {
 
 
   useEffect(() => {
-    if (token && marketId) {
-      dispatch(main_updateLoading(true));
-      service.getMarket(marketId, token).then(res => {
-        const x = res?.size_x;
-        const y = res?.size_y;
-        setRatioDiff(Math.trunc(100 * (y - x) / x));
-      }).finally(() => dispatch(main_updateLoading(false)));
+    if (token && selectedMarket) {
+      const x = selectedMarket.size_x;
+      const y = selectedMarket.size_y;
+      setRatioDiff(Math.trunc(100 * (y - x) / x));
     }
-  }, [token, marketId]);
+  }, [token, selectedMarket]);
 
 
 

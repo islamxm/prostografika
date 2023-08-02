@@ -1,40 +1,22 @@
 import Button from '@components/Button/Button';
 import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
-import MainApi from '@service/MainApi';
-import { main_updateLoading, main_updateMarketId } from '@store/slices/mainSlice/mainSlice';
+import { main_updateMarketId } from '@store/slices/mainSlice/mainSlice';
 import pageEnterExitAnim from '@utils/pageEnterExitAnim';
 import { Col, Row } from 'antd';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './FormatPage.module.scss';
 
-const service = new MainApi();
-
 const FormatPage = () => {
   const dispatch = useAppDispatch();
-  const { token } = useAppSelector(s => s.mainReducer);
+  const { markets } = useAppSelector(s => s.mainReducer);
   const navigate = useNavigate();
-  const [list, setList] = useState<any[]>([]);
-
-
-  useEffect(() => {
-    if (token) {
-      dispatch(main_updateLoading(true));
-      service.getMarkets(token).then(res => {
-        console.log(res);
-        setList(res?.results);
-      }).finally(() => dispatch(main_updateLoading(false)));
-    }
-  }, [token]);
-
 
   const onSelectMarket = (id: number | string) => {
     dispatch(main_updateMarketId(id));
     navigate('/upload_edit');
   };
-
 
   return (
     <motion.div
@@ -48,7 +30,7 @@ const FormatPage = () => {
             </div>
           </Col>
           {
-            list?.map(i => (
+            markets?.map(i => (
               <Col span={24} key={i.id}>
                 <Button
                   style={{ backgroundColor: i.color, paddingTop: 8, paddingBottom: 8 }}
