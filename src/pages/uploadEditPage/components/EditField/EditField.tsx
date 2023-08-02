@@ -19,7 +19,7 @@ const EditField = () => {
   const [uploadedFile, setUploadedFile] = useState<string>('');
   const [bgRemoved, setBgRemoved] = useState<string>('');
   const [ratioDiff, setRatioDiff] = useState(0);
-  const [canvas, setCanvas] = useState<any | null>(null);
+  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const navigate = useNavigate();
 
   const onRemoveBg = () => {
@@ -58,7 +58,7 @@ const EditField = () => {
     if (canvas && bgRemoved) {
       fabric.Image.fromURL(`data:image/png;base64,${bgRemoved}`, (oImg: Image) => {
         canvas?.add(oImg);
-        canvas.item(0).set({
+        canvas.getObjects()[0].set({
           borderColor: '#56AEFF',
           cornerColor: '#fff',
           transparentCorners: false,
@@ -66,7 +66,6 @@ const EditField = () => {
           cornerStrokeColor: '#56AEFF',
           scaleX: 0.5,
           scaleY: 0.5,
-          selectionBorderColor: '#000'
         });
       });
     }
