@@ -1,4 +1,4 @@
-import { TGeneratedTemplate, TPremadeTemplate, TTemplate } from '@store/initState';
+import { IGradient, TGeneratedTemplate, TPremadeTemplate } from '@store/initState';
 
 import checkAuth from "./checkAuth";
 import endpoints from "./endpoints";
@@ -178,7 +178,7 @@ class MainApi {
 
   async getGeneratingTemplates(token: string): Promise<TGeneratedTemplate[]> {
     try {
-      const response = await fetch('', {
+      const response = await fetch(endpoints.templates('generating'), {
         method: 'GET',
         headers: {
           ...headers,
@@ -195,7 +195,7 @@ class MainApi {
 
   async getPremadeTemplates(token: string): Promise<TPremadeTemplate[]> {
     try {
-      const response = await fetch('', {
+      const response = await fetch(endpoints.templates('premade'), {
         method: 'GET',
         headers: {
           ...headers,
@@ -208,6 +208,24 @@ class MainApi {
       return [];
     }
   }
+
+  async getGradients(token: string): Promise<IGradient[]> {
+    try {
+      const response = await fetch(endpoints.gradients, {
+        method: 'GET',
+        headers: {
+          ...headers,
+          'Authorization': `Token ${token}`
+        }
+      });
+
+      return await checkAuth(response);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
   getPlans = async (
     token: any,
     {
