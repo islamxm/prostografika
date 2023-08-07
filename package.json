@@ -17,6 +17,7 @@
     "@types/react-div-100vh": "^0.4.0",
     "@types/react-dom": "^18.0.11",
     "antd": "^5.4.0",
+    "classnames": "^2.3.2",
     "craco": "^0.0.3",
     "fabric": "^5.3.0",
     "fabricjs-react": "^1.2.0",
