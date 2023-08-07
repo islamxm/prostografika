@@ -37,8 +37,8 @@ const PersonalGenPage = () => {
 
   useEffect(() => {
     if (currentCanvas) {
-      console.log(currentCanvas?.objects[0]?.src);
-      setSourcePrev(currentCanvas?.objects[0]?.src);
+      // console.log(currentCanvas?.objects[0]?.src);
+      // setSourcePrev(currentCanvas?.objects[0]?.src);
     }
     // else {
     //     navigate('/format')
