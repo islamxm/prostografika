@@ -3,7 +3,7 @@ import Loading from '@components/Loading/Loading';
 import Sidebar from '@components/Sidebar/Sidebar';
 import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { useScroll } from '@react-hooks-library/core';
-import { main_menuClose } from '@store/slices/mainSlice/mainSlice';
+import { fetchGeneratingTemplates, fetchPremadeTemplates, main_menuClose } from '@store/slices/mainSlice/mainSlice';
 import { fetchMarkets } from '@store/slices/mainSlice/mainSlice';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import Div100vh from 'react-div-100vh';
@@ -33,6 +33,8 @@ const Wrapper: FC<{ children?: ReactNode }> = ({
   useEffect(() => {
     if (token) {
       dispatch(fetchMarkets(token as string));
+      dispatch(fetchPremadeTemplates());
+      dispatch(fetchGeneratingTemplates());
     }
   }, [token]);
 
