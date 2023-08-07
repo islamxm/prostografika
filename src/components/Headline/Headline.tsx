@@ -4,7 +4,7 @@ import GenerationBalance from '../GenerationBalance/GenerationBalance';
 import styles from './Headline.module.scss';
 import { IHeadline } from './types';
 
-const Headline:FC<IHeadline> = ({
+const Headline: FC<IHeadline> = ({
   title,
   generationBalance,
   description

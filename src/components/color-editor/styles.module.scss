@@ -1,0 +1,29 @@
+.colorControls {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+
+  .control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    visibility: hidden;
+    appearance: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+.colorController {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
