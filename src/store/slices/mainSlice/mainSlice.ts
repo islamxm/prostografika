@@ -1,7 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import MainApi from '@service/MainApi';
+import { RootState } from '@store/store';
 
-import initState from '../../initState';
+import initState, { TTemplate } from '../../initState';
 
 const service = new MainApi();
 
@@ -9,8 +10,25 @@ export const fetchMarkets = createAsyncThunk(
   'main/fetchMarkets',
   async (token: string, { dispatch }) => {
     dispatch(main_updateLoading(true));
-    const response = await service.getMarkets(token);
-    return response.results;
+    return (await service.getMarkets(token)).results;
+  }
+);
+
+export const fetchPremadeTemplates = createAsyncThunk(
+  'main/fetchPremadeTemplates',
+  async (someParams, { dispatch, getState }) => {
+    const { mainReducer } = getState() as RootState;
+    dispatch(main_updateLoading(true));
+    return await service.getPremadeTemplates(mainReducer.token as string);
+  }
+);
+
+export const fetchGeneratingTemplates = createAsyncThunk(
+  'main/fetchGeneratingTemplates',
+  async function (someParams, { dispatch, getState }) {
+    const { mainReducer } = getState() as RootState;
+    dispatch(main_updateLoading(true));
+    return await service.getGeneratingTemplates(mainReducer.token as string);
   }
 );
 
@@ -27,16 +45,27 @@ const mainSlice = createSlice({
       state.marketId = action.payload;
       state.selectedMarket = state.markets.find((m) => m.id === action.payload) ?? null;
     },
-    main_updateCurrentCanvas: (state, action) => { state.currentCanvas = action.payload; }
+    main_updateCurrentCanvas: (state, action) => { state.currentCanvas = action.payload; },
+    setSelectedTemplate(state, action: PayloadAction<TTemplate>) {
+      state.selectedTemplate = action.payload;
+    },
+    setCardSize(state, action: PayloadAction<{ width: number, height: number }>) {
+      state.cardSize = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMarkets.fulfilled, (state, action) => {
       state.markets = action.payload;
       state.isLoading = false;
+    }).addCase(fetchPremadeTemplates.fulfilled, (state, action) => {
+      state.premadeTemplates = action.payload;
+      state.isLoading = false;
+    }).addCase(fetchGeneratingTemplates.fulfilled, (state, action) => {
+      state.generatedTemplates = action.payload;
+      state.isLoading = false;
     });
   }
 });
-
 
 const { actions, reducer } = mainSlice;
 
@@ -49,5 +78,7 @@ export const {
   main_updateLoading,
   main_updateMarketId,
   main_updateCurrentCanvas,
+  setSelectedTemplate,
+  setCardSize
 } = actions;
 
