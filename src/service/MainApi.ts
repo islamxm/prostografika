@@ -1,5 +1,9 @@
-import { TGeneratedTemplate, TPremadeTemplate, TTemplate } from '@store/initState';
+import { IGradient, TGeneratedTemplate, TPremadeTemplate, TTemplate } from '@store/initState';
 
+import { bg } from './bg';
+import { bg1 } from './bg1';
+import { bg2 } from './bg2';
+import { chair64 } from './chair64';
 import checkAuth from "./checkAuth";
 import endpoints from "./endpoints";
 
@@ -178,7 +182,7 @@ class MainApi {
 
   async getGeneratingTemplates(token: string): Promise<TGeneratedTemplate[]> {
     try {
-      const response = await fetch('', {
+      const response = await fetch(endpoints.templates('generating'), {
         method: 'GET',
         headers: {
           ...headers,
@@ -195,7 +199,7 @@ class MainApi {
 
   async getPremadeTemplates(token: string): Promise<TPremadeTemplate[]> {
     try {
-      const response = await fetch('', {
+      const response = await fetch(endpoints.templates('premade'), {
         method: 'GET',
         headers: {
           ...headers,
@@ -208,6 +212,24 @@ class MainApi {
       return [];
     }
   }
+
+  async getGradients(token: string): Promise<IGradient[]> {
+    try {
+      const response = await fetch(endpoints.gradients, {
+        method: 'GET',
+        headers: {
+          ...headers,
+          'Authorization': `Token ${token}`
+        }
+      });
+
+      return await checkAuth(response);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
   getPlans = async (
     token: any,
     {
@@ -277,6 +299,21 @@ class MainApi {
     }
   };
 
+  getTestBase64() {
+    return chair64;
+  }
+
+  getTestBgBase64() {
+    return bg;
+  }
+
+  getTestBgBase641() {
+    return bg1;
+  }
+
+  getTestBgBase642() {
+    return bg2;
+  }
 }
 
 export default MainApi;
