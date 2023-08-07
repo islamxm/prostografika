@@ -32,6 +32,15 @@ export const fetchGeneratingTemplates = createAsyncThunk(
   }
 );
 
+export const fetchGradients = createAsyncThunk(
+  'main/fetchGradients',
+  async function (someParams, { dispatch, getState }) {
+    const { mainReducer } = getState() as RootState;
+    dispatch(main_updateLoading(true));
+    return await service.getGradients(mainReducer.token as string);
+  }
+);
+
 const mainSlice = createSlice({
   name: 'main',
   initialState: initState,
@@ -62,6 +71,9 @@ const mainSlice = createSlice({
       state.isLoading = false;
     }).addCase(fetchGeneratingTemplates.fulfilled, (state, action) => {
       state.generatedTemplates = action.payload;
+      state.isLoading = false;
+    }).addCase(fetchGradients.fulfilled, (state, action) => {
+      state.gradients = action.payload;
       state.isLoading = false;
     });
   }
