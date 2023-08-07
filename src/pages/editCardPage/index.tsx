@@ -14,21 +14,22 @@ import styles from './styles.module.scss';
 
 const service = new MainApi();
 
-const chairBase64 = service.getTestBase64();
-const bgBase64 = service.getTestBgBase64();
-const bgBase641 = service.getTestBgBase641();
-const bgBase642 = service.getTestBgBase642();
+// const chairBase64 = service.getTestBase64();
+// const bgBase64 = service.getTestBgBase64();
+// const bgBase641 = service.getTestBgBase641();
+// const bgBase642 = service.getTestBgBase642();
 
 const EditCardPage = () => {
   // -----------------------TEMP-START----------------------------
-  const dispatch = useAppDispatch();
-  const { markets } = useAppSelector(s => s.mainReducer);
+  // const dispatch = useAppDispatch();
+  // const { markets } = useAppSelector(s => s.mainReducer);
 
-  useEffect(() => {
-    dispatch(main_updateMarketId(1));
-  }, [markets]);
+  // useEffect(() => {
+  //   dispatch(main_updateMarketId(1));
+  // }, [markets]);
   // -----------------------TEMP-END----------------------------
 
+  const dispatch = useAppDispatch();
   const [canvasContainerRef, setCanvasContainerRef] = useCustomRef<HTMLDivElement>();
   const [canvasRef, setCanvseRef] = useCustomRef<HTMLCanvasElement>();
   const [canvas, setCanvasObject] = useState<fabric.Canvas | null>(null);
@@ -91,17 +92,15 @@ const EditCardPage = () => {
     const cv = new fabric.Canvas(canvasRef);
 
     // ------------------TEMP----------------
-    fabric.Image.fromURL(`data:image/png;base64,${chairBase64}`, (img) => {
-      cv.add(img);
-    });
+    // fabric.Image.fromURL(`data:image/png;base64,${chairBase64}`, (img) => {
+    //   cv.add(img);
+    // });
     // ------------------TEMP----------------
 
     cv
       .setWidth(canvasContainerRef.clientWidth)
-      .setHeight(canvasContainerRef.clientHeight);
-    // .loadFromJSON(canvasDataJSON, () => {
-    // CONTINUE HERE
-    // });
+      .setHeight(canvasContainerRef.clientHeight)
+      .loadFromJSON(canvasDataJSON, cv.renderAll.bind(cv));
 
     if (selectedTemplate && selectedTemplate.type === 'image') {
       fabric.Image.fromURL(`data:image/png;base64,${selectedTemplate.image}`, (img: Image) => {
