@@ -12,6 +12,7 @@ interface I {
   premadeTemplates: TPremadeTemplate[]
   generatedTemplates: TGeneratedTemplate[]
   cardSize: { width: number, height: number }
+  gradients: IGradient[]
 }
 
 export interface IMarket {
@@ -46,6 +47,12 @@ interface ICanvasJSON {
   objects: fabric.Object[]
 }
 
+export interface IGradient {
+  colors: { color: string, offset: number }[],
+  type: 'linear' | 'radial',
+  angle: number,
+}
+
 const initState: I = {
   token: (Cookies?.get('prostografika-token') && typeof Cookies?.get('prostografika-token') === 'string') ? Cookies?.get('prostografika-token') : null,
   isMenuOpen: false,
@@ -57,7 +64,8 @@ const initState: I = {
   selectedTemplate: null,
   premadeTemplates: [],
   generatedTemplates: [],
-  cardSize: { width: 0, height: 0 }
+  cardSize: { width: 0, height: 0 },
+  gradients: []
 };
 
 export default initState;
