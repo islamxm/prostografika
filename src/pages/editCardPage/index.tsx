@@ -10,7 +10,6 @@ import { Image } from 'fabric/fabric-impl';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-import BrightnessController from '../../components/color-editor/components/BrightnessController';
 import styles from './styles.module.scss';
 
 const service = new MainApi();

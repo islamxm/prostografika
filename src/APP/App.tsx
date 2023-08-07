@@ -2,6 +2,7 @@ import Wrapper from "@components/Wrapper/Wrapper";
 import CheckAuth from "@hoc/CheckAuth";
 import AuthPage from "@pages/authPage/AuthPage";
 import CardsPage from "@pages/cardsPage/CardsPage";
+import EditCardPage from "@pages/editCardPage";
 import FormatPage from "@pages/formatPage/FormatPage";
 import GensPage from "@pages/gensPage/GensPage";
 import PersonalGenPage from "@pages/personalGenPage/PersonalGenPage";
@@ -36,9 +37,9 @@ const App: FC = () => {
             <Route path="/templates" element={<CheckAuth><TempsPage /></CheckAuth>} />
             <Route path="/generations" element={<CheckAuth><GensPage /></CheckAuth>} />
             <Route path="/personal_generation" element={<CheckAuth><PersonalGenPage /></CheckAuth>} />
+            <Route path="/edit_card_content" element={<CheckAuth><EditCardPage /></CheckAuth>} />
           </Routes>
         </AnimatePresence>
-
       </Wrapper>
     </Provider>
 
