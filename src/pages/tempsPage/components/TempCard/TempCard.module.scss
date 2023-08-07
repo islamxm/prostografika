@@ -4,4 +4,17 @@
     border-radius: 14px;
     overflow: hidden;
     background-color: var(--light_violet);
+
+    img {
+        width: 100%;
+    }
+
+    .selectColor {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(139deg, #00D1FF 0%, #AD00FF 100%);
+        width: 100%;
+        height: 100%;
+    }
 }
