@@ -1,3 +1,5 @@
+import { TGeneratedTemplate, TPremadeTemplate, TTemplate } from '@store/initState';
+
 import checkAuth from "./checkAuth";
 import endpoints from "./endpoints";
 
@@ -174,7 +176,38 @@ class MainApi {
     }
   };
 
+  async getGeneratingTemplates(token: string): Promise<TGeneratedTemplate[]> {
+    try {
+      const response = await fetch('', {
+        method: 'GET',
+        headers: {
+          ...headers,
+          'Authorization': `Token ${token}`
+        }
+      });
 
+      return await checkAuth(response);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
+  async getPremadeTemplates(token: string): Promise<TPremadeTemplate[]> {
+    try {
+      const response = await fetch('', {
+        method: 'GET',
+        headers: {
+          ...headers,
+          'Authorization': `Token ${token}`
+        }
+      });
+      return await checkAuth(response);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
   getPlans = async (
     token: any,
     {
