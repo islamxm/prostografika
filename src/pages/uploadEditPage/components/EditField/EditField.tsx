@@ -100,7 +100,7 @@ const EditField = () => {
       const canvasJson = canvas?.toJSON();
 
       dispatch(main_updateCurrentCanvas(canvasJson));
-      navigate('/personal_generation');
+      navigate('/templates');
     }
   };
 
