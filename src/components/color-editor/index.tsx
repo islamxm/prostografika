@@ -1,4 +1,6 @@
 import Circle from '@components/circle';
+import { useAppSelector } from '@hooks/reduxHooks';
+import cx from 'classnames';
 import React, { useState } from 'react';
 
 import GradientController from './components/GradientController';
@@ -12,17 +14,33 @@ type Props = {
 
 const ColorEditor = ({ handleColorChange, handleGradientChange }: Props) => {
   const [type, setType] = useState<"color" | "gradient">("color");
+  const { selectedTemplate } = useAppSelector(s => s.mainReducer);
+  const [circleBgColor, setCircleBgColor] = useState<string>('#fff');
 
   return (
     <div>
       <div className={styles.colorControls}>
         <div className={styles.control} onClick={() => setType("color")}>
-          <input id='color-input' type="color" onChange={handleColorChange} defaultValue={'#ffffff'} />
+          <input
+            id='color-input'
+            type="color"
+            defaultValue={'#ffffff'}
+            onChange={(e) => {
+              handleColorChange(e);
+              setCircleBgColor(e.target.value);
+            }}
+          />
           <label htmlFor="color-input">
-            <Circle color='red' label='Цвет' isSelected={type === 'color'} />
+            <Circle color={circleBgColor} label='Цвет' isSelected={type === 'color'} />
           </label>
         </div>
-        <div onClick={() => setType("gradient")}>
+        <div
+          className={cx({ [styles.disabled]: selectedTemplate?.type !== 'color' })}
+          onClick={() => {
+            if (selectedTemplate?.type === 'color') {
+              setType("gradient");
+            }
+          }}>
           <Circle color='linear-gradient(139deg, #00D1FF 0%, #AD00FF 100%)' label='Градиент' isSelected={type === 'gradient'} />
         </div>
       </div>

@@ -11,6 +11,11 @@
     justify-content: center;
   }
 
+  .disabled {
+    filter: grayscale(0.5);
+    color: gray;
+  }
+
   input {
     visibility: hidden;
     appearance: none;
