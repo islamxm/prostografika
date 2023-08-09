@@ -29,7 +29,7 @@ const App: FC = () => {
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<CheckAuth><StartPage /></CheckAuth>} />
-            <Route path="/auth" element={<CheckAuth><AuthPage /></CheckAuth>} />
+            <Route path="/auth" element={<AuthPage />} />
             <Route path="/format" element={<CheckAuth><FormatPage /></CheckAuth>} />
             <Route path="/pricing" element={<CheckAuth><PricingPage /></CheckAuth>} />
             <Route path="/upload_edit" element={<CheckAuth><UploadEditPage /></CheckAuth>} />
