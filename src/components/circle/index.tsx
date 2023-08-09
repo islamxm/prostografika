@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import { FC, PropsWithChildren } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -8,11 +9,13 @@ type Props = {
   color: string
 }
 
-const Circle = ({ isSelected, color, label }: Props) => {
+const Circle: FC<PropsWithChildren<Props>> = ({ isSelected, color, label, children }) => {
   return (
     <div className={styles.container}>
       <div className={cx(styles.circle, { [styles.selected]: isSelected })}>
-        <div className={styles.circleInner} style={{ background: color }} />
+        <div className={styles.circleInner} style={{ background: color }} >
+          {children}
+        </div>
       </div>
       <span>{label}</span>
     </div>

@@ -9,6 +9,9 @@
     padding: 2px;
     border-radius: 50%;
     transition: border-color 150ms linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &Inner {
       width: 30px;
