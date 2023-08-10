@@ -7,7 +7,6 @@ import GradientController from './components/GradientController';
 import styles from './styles.module.scss';
 
 type Props = {
-  handleBrightnessChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleColorChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleGradientChange: (gradient: fabric.Gradient) => void
 }
