@@ -1,0 +1,36 @@
+.container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .upperPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    position: relative;
+    top: -10px;
+  }
+
+  .lowerPanel {
+    bottom: 0;
+    position: sticky;
+    width: 100%;
+    z-index: 1;
+
+    .row {
+      width: 100%;
+      height: 70px;
+      backdrop-filter: blur(3px);
+      overflow-x: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 5px;
+    }
+  }
+}
