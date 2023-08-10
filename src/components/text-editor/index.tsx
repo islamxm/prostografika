@@ -1,4 +1,5 @@
 import Circle from '@components/circle';
+import { useAppSelector } from '@hooks/reduxHooks';
 import letterIcon from '@icons/icon-letter-a.png';
 import radialGrIcon from '@icons/icon-radial-gradient.png';
 import { useEffect, useState } from 'react';
@@ -18,6 +19,7 @@ type TextProps = 'color' | 'fontFamily'
 const TextEditor = ({ requestRenderAll, canvasTextObject }: Props) => {
   const [selectedTextProp, setSelectedTextProp] = useState<TextProps>('fontFamily');
   const handleCircleClick = (prop: TextProps) => () => setSelectedTextProp(prop);
+  const { cardSize } = useAppSelector((state) => state.mainReducer);
 
   useEffect(() => () => setSelectedTextProp('fontFamily'), []);
 
@@ -27,7 +29,7 @@ const TextEditor = ({ requestRenderAll, canvasTextObject }: Props) => {
 
   return (
     <TextEditorContext.Provider value={{ canvasTextObject, requestRenderAll }}>
-      <div className={styles.container}>
+      <div className={styles.container} style={{ height: (cardSize.height + 105) }}>
         <div className={styles.upperPanel}>
           <div onClick={handleCircleClick('fontFamily')}>
             <Circle isSelected={selectedTextProp === 'fontFamily'} color='transparent'>
