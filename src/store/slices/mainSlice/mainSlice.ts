@@ -11,6 +11,30 @@ export const fetchMarkets = createAsyncThunk(
   async (token: string, { dispatch }) => {
     dispatch(main_updateLoading(true));
     return (await service.getMarkets(token)).results;
+
+    // return [
+    //   {
+    //     "id": 1,
+    //     "title": "Wildberries",
+    //     "color": "#8343A3",
+    //     "size_x": 900,
+    //     "size_y": 1200
+    //   },
+    //   {
+    //     "id": 2,
+    //     "title": "Ozon",
+    //     "color": "#51ABFF",
+    //     "size_x": 900,
+    //     "size_y": 1200
+    //   },
+    //   {
+    //     "id": 3,
+    //     "title": "Яндекс Маркет",
+    //     "color": "#F5C400",
+    //     "size_x": 300,
+    //     "size_y": 300
+    //   }
+    // ];
   }
 );
 
@@ -20,6 +44,19 @@ export const fetchPremadeTemplates = createAsyncThunk(
     const { mainReducer } = getState() as RootState;
     dispatch(main_updateLoading(true));
     return await service.getPremadeTemplates(mainReducer.token as string);
+
+    // const tempPremadeTemplates: any[] = [
+    //   {
+    //     id: 3,
+    //     image: service.getTestBgBase641()
+    //   },
+    //   {
+    //     id: 4,
+    //     image: service.getTestBgBase642()
+    //   },
+    // ];
+
+    // return tempPremadeTemplates;
   }
 );
 
@@ -38,6 +75,76 @@ export const fetchGradients = createAsyncThunk(
     const { mainReducer } = getState() as RootState;
     dispatch(main_updateLoading(true));
     return await service.getGradients(mainReducer.token as string);
+
+    // const gradients = [
+    //   {
+    //     colors: [
+    //       {
+    //         color: "#00D1FF",
+    //         offset: 0
+    //       },
+    //       {
+    //         color: "#AD00FF",
+    //         offset: 1
+    //       },
+    //     ],
+    //     type: "linear" as const,
+    //     angle: 139
+    //   },
+    //   {
+    //     colors: [
+    //       {
+    //         color: "red",
+    //         offset: 0.5
+    //       },
+    //       {
+    //         color: "green",
+    //         offset: 1
+    //       },
+    //     ],
+    //     type: "linear" as const,
+    //     angle: 45
+    //   },
+    //   {
+    //     colors: [
+    //       {
+    //         color: "green",
+    //         offset: 0.5
+    //       },
+    //       {
+    //         color: "blue",
+    //         offset: 1
+    //       },
+    //     ],
+    //     type: "linear" as const,
+    //     angle: 145
+    //   },
+    //   {
+    //     colors: [
+    //       {
+    //         color: "purple",
+    //         offset: 0
+    //       },
+    //       {
+    //         color: "#AD00FF",
+    //         offset: 1
+    //       },
+    //     ],
+    //     type: "linear" as const,
+    //     angle: 245
+    //   }
+    // ];
+
+    // return gradients;
+  }
+);
+
+const fetchSvgs = createAsyncThunk(
+  'main/fetchSvgs',
+  async function (someParams, { dispatch, getState }) {
+    const { mainReducer } = getState() as RootState;
+    dispatch(main_updateLoading(true));
+    return await service.getSvgs(mainReducer.token as string);
   }
 );
 
@@ -74,6 +181,9 @@ const mainSlice = createSlice({
       state.isLoading = false;
     }).addCase(fetchGradients.fulfilled, (state, action) => {
       state.gradients = action.payload;
+      state.isLoading = false;
+    }).addCase(fetchSvgs.fulfilled, (state, action) => {
+      state.svgCollections = action.payload;
       state.isLoading = false;
     });
   }
