@@ -36,6 +36,8 @@ const EditField = () => {
       }).finally(() => {
         dispatch(main_updateLoading(false));
       });
+
+      // setBgRemoved(service.getChairBase64);
     }
   };
 
