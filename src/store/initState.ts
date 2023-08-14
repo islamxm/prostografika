@@ -13,7 +13,7 @@ interface I {
   generatedTemplates: TGeneratedTemplate[]
   cardSize: { width: number, height: number }
   gradients: IGradient[]
-  svgCollections: string[]
+  svgCollections: SvgIcon[]
 }
 
 export interface IMarket {
@@ -37,6 +37,11 @@ export type TGeneratedTemplate = {
   type: "generated"
   name: string,
   value: string,
+  image: string
+}
+
+export interface SvgIcon {
+  id: number
   image: string
 }
 
