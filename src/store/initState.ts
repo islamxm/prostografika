@@ -13,6 +13,7 @@ interface I {
   generatedTemplates: TGeneratedTemplate[]
   cardSize: { width: number, height: number }
   gradients: IGradient[]
+  svgCollections: string[]
 }
 
 export interface IMarket {
@@ -65,7 +66,8 @@ const initState: I = {
   premadeTemplates: [],
   generatedTemplates: [],
   cardSize: { width: 0, height: 0 },
-  gradients: []
+  gradients: [],
+  svgCollections: []
 };
 
 export default initState;

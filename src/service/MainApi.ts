@@ -226,6 +226,23 @@ class MainApi {
     }
   }
 
+  async getSvgs(token: string): Promise<string[]> {
+    try {
+      const response = await fetch(endpoints.svgCollections, {
+        method: 'GET',
+        headers: {
+          ...headers,
+          'Authorization': `Token ${token}`
+        }
+      });
+
+      return await checkAuth(response);
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
   getPlans = async (
     token: any,
     {

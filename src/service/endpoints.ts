@@ -23,7 +23,7 @@ const endpoints = {
   file2b64: `${PATH_MAIN_API}utility/file2b64/`,
   templates: (type: 'premade' | 'generating') => `${PATH_MAIN_API}templates/${type}/`,
   gradients: `${PATH_MAIN_API}gradients`,
-  svgCollections: `${PATH_MAIN_API}svg-collections`
+  svgCollections: `${PATH_MAIN_API}svg_collections`
 };
 
 

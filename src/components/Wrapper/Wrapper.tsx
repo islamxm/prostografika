@@ -3,7 +3,7 @@ import Loading from '@components/Loading/Loading';
 import Sidebar from '@components/Sidebar/Sidebar';
 import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { useScroll } from '@react-hooks-library/core';
-import { fetchGeneratingTemplates, fetchGradients, fetchPremadeTemplates, main_menuClose } from '@store/slices/mainSlice/mainSlice';
+import { fetchGeneratingTemplates, fetchGradients, fetchPremadeTemplates, fetchSvgs, main_menuClose } from '@store/slices/mainSlice/mainSlice';
 import { fetchMarkets } from '@store/slices/mainSlice/mainSlice';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import Div100vh from 'react-div-100vh';
@@ -36,6 +36,7 @@ const Wrapper: FC<{ children?: ReactNode }> = ({
       dispatch(fetchPremadeTemplates());
       dispatch(fetchGeneratingTemplates());
       dispatch(fetchGradients());
+      dispatch(fetchSvgs());
     }
   }, [token]);
 

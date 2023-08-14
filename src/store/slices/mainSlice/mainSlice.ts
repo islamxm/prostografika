@@ -139,7 +139,7 @@ export const fetchGradients = createAsyncThunk(
   }
 );
 
-const fetchSvgs = createAsyncThunk(
+export const fetchSvgs = createAsyncThunk(
   'main/fetchSvgs',
   async function (someParams, { dispatch, getState }) {
     const { mainReducer } = getState() as RootState;
