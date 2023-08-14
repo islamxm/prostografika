@@ -6,9 +6,10 @@ const TempCard = (props: TTemplate) => {
 
   return (
     <div className={styles.wrapper}>
-      {(props.type === 'image' || props.type === 'generated')
+      {/* {(props.type === 'image' || props.type === 'generated')
         ? <img src={`data:image/png;base64,${props.image}`} />
-        : <div className={styles.selectColor}>Выбрать цвет</div>}
+        : <div className={styles.selectColor}>Выбрать цвет</div>} */}
+      <img src={`data:image/png;base64,${(props as any).image}`} />
     </div>
   );
 };
