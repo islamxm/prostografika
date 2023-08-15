@@ -226,7 +226,7 @@ class MainApi {
     }
   }
 
-  async getSvgs(token: string): Promise<string[]> {
+  async getSvgs(token: string): Promise<SvgIcon[]> {
     try {
       const response = await fetch(endpoints.svgCollections, {
         method: 'GET',
