@@ -1,4 +1,4 @@
-import { IGradient, TGeneratedTemplate, TPremadeTemplate } from '@store/initState';
+import { IGradient, SvgIcon, TGeneratedTemplate, TPremadeTemplate } from '@store/initState';
 
 import checkAuth from "./checkAuth";
 import endpoints from "./endpoints";
