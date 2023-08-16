@@ -1,5 +1,6 @@
 import Circle from '@components/circle';
 import { useAppSelector } from '@hooks/reduxHooks';
+import { ColorPicker } from 'antd';
 import cx from 'classnames';
 import React, { useState } from 'react';
 
@@ -7,7 +8,7 @@ import GradientController from './components/GradientController';
 import styles from './styles.module.scss';
 
 type Props = {
-  handleColorChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleColorChange: (color: string) => void
   handleGradientChange: (gradient: fabric.Gradient) => void
 }
 
@@ -20,18 +21,20 @@ const ColorEditor = ({ handleColorChange, handleGradientChange }: Props) => {
     <div>
       <div className={styles.colorControls}>
         <div className={styles.control} onClick={() => setType("color")}>
-          <input
-            id='color-input'
-            type="color"
-            defaultValue={'#ffffff'}
-            onChange={(e) => {
-              handleColorChange(e);
-              setCircleBgColor(e.target.value);
+          <ColorPicker
+            disabledAlpha
+            onChange={(color, hex) => {
+              handleColorChange(hex);
+              setCircleBgColor(hex);
             }}
-          />
-          <label htmlFor="color-input">
-            <Circle color={circleBgColor} label='Цвет' isSelected={type === 'color'} />
-          </label>
+          >
+            {' '}
+            <Circle
+              color={circleBgColor}
+              label='Цвет'
+              isSelected={type === 'color'}
+            />
+          </ColorPicker>
         </div>
         <div
           className={cx({ [styles.disabled]: selectedTemplate?.type !== 'color' })}
