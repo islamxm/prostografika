@@ -55,17 +55,17 @@ const EditCardPage = () => {
     }
   };
 
-  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleColorChange = (color: string) => {
     // if (selectedTemplate?.type === 'image') {
     if ((selectedTemplate as any).id) {
       if (colorFilter) {
-        colorFilter.color = e.target.value;
+        colorFilter.color = color;
         bgImage?.applyFilters();
         canvas?.requestRenderAll();
       }
     } else {
       if (canvas) {
-        canvas.setBackgroundColor(e.target.value, canvas.renderAll.bind(canvas));
+        canvas.setBackgroundColor(color, canvas.renderAll.bind(canvas));
       }
     }
   };
