@@ -13,6 +13,7 @@ import { IEvent, Image } from 'fabric/fabric-impl';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import { CustomCanvas } from './customCanvas';
 import styles from './styles.module.scss';
 
 const EditCardPage = () => {
@@ -20,13 +21,11 @@ const EditCardPage = () => {
 
   const [canvasContainerRef, setCanvasContainerRef] = useCustomRef<HTMLDivElement>();
   const [canvasRef, setCanvseRef] = useCustomRef<HTMLCanvasElement>();
-  const [canvas, setCanvasObject] = useState<fabric.Canvas | null>(null);
+  const [canvas, setCanvasObject] = useState<CustomCanvas | null>(null);
   const { token, selectedMarket, currentCanvas: canvasDataJSON, selectedTemplate } = useAppSelector(s => s.mainReducer);
 
   const [selectedTextObject, setSelectedTextObject] = useState<fabric.IText | null>(null);
   const [selectedSvgObject, setSelectedSvgObject] = useState<fabric.Group | null>(null);
-  const [colorFilter, setColorFilter] = useState<fabric.IBlendColorFilter | null>(null);
-  const [bgImage, setBgImage] = useState<Image | null>(null);
   const [step, setStep] = useState<'colorStep' | 'textStep'>('colorStep');
 
   const handleColorChange = (color: string) => {
@@ -35,10 +34,13 @@ const EditCardPage = () => {
     }
     // if (selectedTemplate?.type === 'image') {
     if ((selectedTemplate as any).id) {
-      if (colorFilter) {
-        colorFilter.color = color;
-        bgImage?.applyFilters();
+      if (canvas.backgroundImage) {
+        const image = canvas.backgroundImage as Image;
+        const filter = image.filters![0] as fabric.IBlendColorFilter;
+        filter.color = color;
+        image.applyFilters();
         canvas.requestRenderAll();
+        canvas.fire('bgChange');
       }
     } else {
       canvas.setBackgroundColor(color, canvas.renderAll.bind(canvas));
@@ -105,7 +107,7 @@ const EditCardPage = () => {
       height: canvasContainerRef.clientHeight
     }));
 
-    const cv = new fabric.Canvas(canvasRef, {
+    const cv = new CustomCanvas(canvasRef, {
       width: canvasContainerRef.clientWidth,
       height: canvasContainerRef.clientHeight,
     });
@@ -115,16 +117,14 @@ const EditCardPage = () => {
       if (selectedTemplate) {
         fabric.Image.fromURL(`data:image/png;base64,${(selectedTemplate as any).image}`, (img: Image) => {
           const colorFilter = new fabric.Image.filters.BlendColor();
-          const brightFilter = new fabric.Image.filters.Brightness();
 
-          img.filters = [colorFilter, brightFilter];
+          img.filters = [colorFilter];
           img.scaleToWidth(cv.width!);
           img.scaleToHeight(cv.height!);
           img.originX = 'left';
           img.originY = 'top';
           cv.setBackgroundImage(img, cv.renderAll.bind(cv));
-          setColorFilter(colorFilter);
-          setBgImage(img);
+          cv.initHistory();
         });
       }
 
