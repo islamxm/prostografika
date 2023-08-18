@@ -8,10 +8,12 @@ import { useCustomRef } from '@hooks/customRef';
 import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { setCardSize } from '@store/slices/mainSlice/mainSlice';
 import { createDeleteControl } from '@utils/fabricControls';
+import cx from 'classnames';
 import { fabric } from 'fabric';
 import { IEvent, Image } from 'fabric/fabric-impl';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import { CustomCanvas } from './customCanvas';
 import styles from './styles.module.scss';
@@ -28,6 +30,8 @@ const EditCardPage = () => {
   const [selectedSvgObject, setSelectedSvgObject] = useState<fabric.Group | null>(null);
   const [step, setStep] = useState<'colorStep' | 'textStep'>('colorStep');
 
+  const [_, forceRender] = useState<boolean>(false);
+
   const handleColorChange = (color: string) => {
     if (canvas === null) {
       return;
@@ -36,11 +40,14 @@ const EditCardPage = () => {
     if ((selectedTemplate as any).id) {
       if (canvas.backgroundImage) {
         const image = canvas.backgroundImage as Image;
-        const filter = image.filters![0] as fabric.IBlendColorFilter;
+        if (image.filters === undefined || image.filters.length === 0) {
+          image.filters = [new fabric.Image.filters.BlendColor()];
+        }
+        const filter = image.filters[0] as fabric.IBlendColorFilter;
         filter.color = color;
         image.applyFilters();
         canvas.requestRenderAll();
-        canvas.fire('bgChange');
+        canvas.fire('event:color:backGround');
       }
     } else {
       canvas.setBackgroundColor(color, canvas.renderAll.bind(canvas));
@@ -107,16 +114,19 @@ const EditCardPage = () => {
       height: canvasContainerRef.clientHeight
     }));
 
-    const cv = new CustomCanvas(canvasRef, {
-      width: canvasContainerRef.clientWidth,
-      height: canvasContainerRef.clientHeight,
-    });
+    const cv = new CustomCanvas(
+      canvasRef,
+      () => { forceRender((prev) => !prev); },
+      {
+        width: canvasContainerRef.clientWidth,
+        height: canvasContainerRef.clientHeight,
+      });
 
     cv.loadFromJSON(canvasDataJSON, () => {
       // if (selectedTemplate && selectedTemplate.type === 'image') {
       if (selectedTemplate) {
         fabric.Image.fromURL(`data:image/png;base64,${(selectedTemplate as any).image}`, (img: Image) => {
-          const colorFilter = new fabric.Image.filters.BlendColor();
+          const colorFilter = new fabric.Image.filters.BlendColor({ color: undefined });
 
           img.filters = [colorFilter];
           img.scaleToWidth(cv.width!);
@@ -153,7 +163,23 @@ const EditCardPage = () => {
 
   return (
     <motion.div style={{ position: 'relative' }}>
-      <Headline title='Изменить цвет' />
+      <div className={styles.headline}>
+        <Headline title='Изменить цвет' />
+        <div className={styles.historyControls}>
+          <span
+            className={cx(styles.button, { [styles.hasMore]: canvas?.hasPrev() })}
+            onClick={() => { canvas?.undo(); }}
+          >
+            <BsChevronLeft />
+          </span>
+          <span
+            className={cx(styles.button, { [styles.hasMore]: canvas?.hasNext() })}
+            onClick={() => { canvas?.redo(); }}
+          >
+            <BsChevronRight />
+          </span>
+        </div>
+      </div>
       <TextEditor
         canvasTextObject={selectedTextObject}
         requestRenderAll={() => canvas?.requestRenderAll()}
