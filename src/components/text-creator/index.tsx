@@ -23,12 +23,12 @@ const TextCreator = ({ createText, createIcon }: Props) => {
           </div>
           <span>Текст</span>
         </div>
-        <div onClick={() => { setShowSvgIcons((prev) => !prev); }} className={styles.control}>
+        {/* <div onClick={() => { setShowSvgIcons((prev) => !prev); }} className={styles.control}>
           <div className={styles.circle}>
             <img src={starIcon} alt="star-icon" />
           </div>
           <span>Иконка</span>
-        </div>
+        </div> */}
       </div>
       {showSvgIcons && (
         <div className={styles.svgCollections}>
